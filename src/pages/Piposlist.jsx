@@ -3,6 +3,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import 'bootstrap/dist/js/bootstrap.bundle'
 
 const PiposList = () => {
 
@@ -33,17 +34,9 @@ const PiposList = () => {
             .then(response => response.json())
             .then(data => {
                 setUser(data);
-                setShowModal(true);
             })
     }
 
-    const openModal = () => {
-        setShowModal(true);
-    }
-
-    const closeModal = () => {
-        setShowModal(false);
-    }
 
     return (
         <>
@@ -57,7 +50,7 @@ const PiposList = () => {
                         {users.map((user) => (
 
                             <Link key={user.id} to={`/piposlist/${user.id}`} className="list-group-item list-group-item-action d-flex gap-3 py-3"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={openModal}>
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" className="rounded-circle flex-shrink-0" />
                                 <div className="d-flex gap-2 w-100 justify-content-between">
                                     <div>
@@ -81,14 +74,14 @@ const PiposList = () => {
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <h1 className="modal-title fs-5" id="exampleModalLabel">{user.name}</h1>
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div className="modal-body">
                                     {/* Modal body content */}
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
