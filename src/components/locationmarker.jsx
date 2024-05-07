@@ -3,7 +3,7 @@ import { Marker, Popup, useMapEvents } from 'react-leaflet';
 
 
 
-function LocationMarker({key, id, free, babychanger, toiletpaper, disabled}, address) {
+function LocationMarker({key, id, free, babychanger, toiletpaper, disabled, address}) {
     const [position, setPosition] = useState(null);
     
     useMapEvents({
