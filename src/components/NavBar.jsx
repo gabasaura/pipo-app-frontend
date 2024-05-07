@@ -42,10 +42,16 @@ function Navbar() {
                                 <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/piposlist">PIPOSLIST</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/">REGISTER</Link>
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/register">REGISTER</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/">LOGIN</Link>
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/login">LOGIN</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/userprofile">USER PROFILE</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/pipoform">ADD PIPO</Link>
                             </li>
                         </ul>
                     </div>
