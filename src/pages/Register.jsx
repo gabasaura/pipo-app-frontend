@@ -8,7 +8,8 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-
+    const [name, setName] = useState("")
+    
     function cancelForm() {
         // Reset form fields
         setUserName("");
@@ -16,16 +17,42 @@ const Register = () => {
         setPassword("");
         setRepeatPassword("");
         setErrorMessage("");
+        setName("")
     }
 
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        if (!validateForm()) {
-            // form submit logic here
-            console.log("Form submitted successfully!");
-            cancelForm(); // Clear 
-        }
+  
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    if (!validateForm()) {
+        // Form submit logic here
+        console.log("Form submitted successfully!");
+        
+        const url = 'http://127.0.0.1:5000/singup';
+        const options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                username: userName,
+                email: email,
+                password: password,
+            })
+        };
+        
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Usuario Registrado Con Éxito', data);
+                // Puedes hacer algo con la respuesta del servidor aquí, como mostrar un mensaje de éxito al usuario
+            })
+            .catch(error => console.error('Error al registrar:', error));
+        
+        cancelForm(); // Clear form fields
     }
+}
 
     function handleInputChange(event) {
         const { id, value } = event.target;
@@ -42,6 +69,9 @@ const Register = () => {
             case "repeatPassword":
                 setRepeatPassword(value);
                 break;
+                case "name":
+                    setName(value);
+                    break;
             default:
                 break;
         }
@@ -76,8 +106,8 @@ const Register = () => {
     return (
         <div className="py-md-5 align-items-center justify-content-center">
             <h1 className="mb-3 text-center">Register</h1>
-            <form className="rounded-3" onSubmit={handleFormSubmit}>
-                <div className="mt-5 w-75 card mx-auto p-0">
+            <form className="rounded-3" onSubmit={(e) => handleFormSubmit(e, {userName, email, password})}>
+                <div className="mt-5 w-50 card mx-auto p-0">
                     <div className="card-body">
                         {errorMessage && <div className="alert alert-danger m-3" role="alert">{errorMessage}</div>}
                         <div className="row mx-2">
@@ -90,12 +120,17 @@ const Register = () => {
                                 <label htmlFor="email" className="form-label">Email</label>
                                 <input type="email" className="form-control" id="email" value={email} onChange={handleInputChange} />
                             </div>
+                            <div className="col-12 mb-3">
+                                <label htmlFor="name" className="form-label">Name</label>
+                                <input type="text" className="form-control" id="name" value={name} onChange={handleInputChange} />
+                            </div>
                         </div>
                         <div className="row mx-2">
                             <div className="col-6 mb-3">
                                 <label htmlFor="password" className="form-label">Password</label>
                                 <input type="password" className="form-control" id="password" value={password} onChange={handleInputChange} />
                             </div>
+                            
 
                             <div className="col-6 mb-3">
                                 <label htmlFor="repeatPassword" className="form-label">Repeat Password</label>
