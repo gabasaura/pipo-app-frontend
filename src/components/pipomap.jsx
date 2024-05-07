@@ -49,7 +49,9 @@ function PipoMap() {
                     key={pipo.id}
                     id={pipo.id}
                     position={[pipo.latitude, pipo.longitude]}
-                ><Popup>{pipo.pipo_name},{pipo.id}</Popup>
+                ><Popup> <b>{pipo.pipo_name}</b> <br/> <br/> {pipo.address} <br/>
+                
+                </Popup>
                 </Marker>
             ))}
         </MapContainer>
