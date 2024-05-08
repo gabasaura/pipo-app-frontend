@@ -12,6 +12,7 @@ const getState = ({ getStore, getActions, setStore}) => {
             handleLogin: () => {},
             handleRegister: () => {},
             handleLogout: () => {},
+            checkCurrentUser: () => {},
             login: () => {},
             register: () => {},
         }
