@@ -28,7 +28,7 @@ function handleFormSubmit(event) {
         // Form submit logic here
         console.log("Form submitted successfully!");
         
-        const url = 'http://127.0.0.1:5000/singup';
+        const url = 'http://127.0.0.1:5000/signup';
         const options = {
             method: "POST",
             headers: {
