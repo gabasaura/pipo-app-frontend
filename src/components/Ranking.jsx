@@ -1,8 +1,6 @@
-/* eslint-disable react/prop-types */
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 
+// eslint-disable-next-line react/prop-types, no-unused-vars
 const StarRating = ({ rating, onChange }) => {
     const renderStars = () => {
         const maxStars = 5;

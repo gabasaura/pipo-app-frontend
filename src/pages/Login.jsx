@@ -9,9 +9,29 @@ const Login = () => {
     function handleFormSubmit(event) {
         event.preventDefault();
         if (!validateForm()) {
-            // Perform login logic here
-            console.log("Login successful!");
-            clearForm();
+            // Form submit logic here
+            console.log("Form submitted successfully!");
+            
+            const url = 'http://127.0.0.1:5000/login';
+            const options = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                })
+            };
+            
+            fetch(url, options)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Usuario logueado Con Éxito', data);
+                })
+                .catch(error => console.error('Log in Error:', error));
+            
+            cancelForm(); // Clear form fields
         }
     }
 
@@ -42,7 +62,7 @@ const Login = () => {
         return emailPattern.test(email);
     }
 
-    function clearForm() {
+    function cancelForm() {
         setEmail("");
         setPassword("");
         setErrorMessage("");
