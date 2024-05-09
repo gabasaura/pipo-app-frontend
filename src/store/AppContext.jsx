@@ -15,7 +15,7 @@ const injectContext = PassedComponent => {
         }))
 
         useEffect(() => {
-            //state.actions.checkCurrentUser()
+            state.actions.checkCurrentUser()
         }, [])
 
         return (
