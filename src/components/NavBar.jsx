@@ -1,10 +1,14 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from 'react';
+import { Context } from "../store/AppContext";
+
+
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { store, actions } = useContext(Context)
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -27,32 +31,34 @@ function Navbar() {
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/">HOME</Link>
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/">HOME</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/about">ABOUT</Link>
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/about">ABOUT</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/faq">FAQ</Link>
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/faq">FAQ</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/contact">CONTACT</Link>
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/contact">CONTACT</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/piposlist">PIPOSLIST</Link>
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/login">LOGIN</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/register">REGISTER</Link>
+                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/register">REGISTER</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/login">LOGIN</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/userprofile">USER PROFILE</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "" )} to="/pipoform">ADD PIPO</Link>
-                            </li>
+                            {!!store.accessToken &&
+                                <>
+                                    <li className="nav-item">
+                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/userprofile">USER PROFILE</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/pipoform">ADD PIPO</Link>
+                                    </li>
+                                </>
+                            }
+
                         </ul>
                     </div>
                 </div>
