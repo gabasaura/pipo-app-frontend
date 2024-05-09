@@ -29,7 +29,6 @@ const App = () => {
                     <Route path="/userprofile" element={<UserProfile />} />
                     <Route path="/pipoform" element={<PipoForm />} />
                     <Route path="/piposlist" element={<PiposList />} />
-                    <Route path="/piposlist/:pipo" element={<PiposList />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>

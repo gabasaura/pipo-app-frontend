@@ -50,6 +50,12 @@ function Navbar() {
                                     <li className="nav-item">
                                         <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/pipoform">ADD PIPO</Link>
                                     </li>
+                                    {!!store.current_user && store.current_user?.admin && (
+                                        <li className="nav-item">
+                                            <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/piposlist">PIPO LIST</Link>
+                                        </li>
+                                    )}
+
                                     <li className="nav-item">
                                         <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/" onClick={actions.logout}> LOG OUT</Link>
                                     </li>

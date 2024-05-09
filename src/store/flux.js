@@ -199,7 +199,53 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({
                     [name]: value
                 })
-			}
+			},
+			activatePipo: (pipoId) => {
+				const {access_token} = getStore()
+				const url = `http://127.0.0.1:5000/pipos/${pipoId}/active`
+				const options = {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + access_token
+					}
+				}
+				fetch(url, options)
+				  .then(response => {
+					return response.json();
+				  })
+				  .then(data => {
+					
+					console.log(data); 
+				  })
+				  .catch(error => {
+					
+					console.error(error.message);
+				  });
+			},
+			deletePipo: (pipoId) => {
+				const {access_token} = getStore()
+				const url = `http://127.0.0.1:5000/pipos/${pipoId}/delete`
+				const options = {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + access_token
+					}
+				}
+				fetch(url, options)
+				  .then(response => {
+					return response.json();
+				  })
+				  .then(data => {
+					
+					console.log(data); 
+				  })
+				  .catch(error => {
+					
+					console.error(error.message);
+				  });
+			},
 		}
 	};
 };
