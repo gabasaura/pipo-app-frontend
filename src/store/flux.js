@@ -82,7 +82,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify({
 							email: email,
-							password: password,
+							password: password
+
 						})
 					};
 
@@ -96,10 +97,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					actions.cancelForm(); // Clear form fields
 				}
 			},
-			handleRegister: (e, email, password) => {
+			handleRegister: (e) => {
 				e.preventDefault();
-				const { actions } = getActions();
-				actions.register(email, password);
+				const { name, email, password, username, repeatPassword} = getStore() 
+				const { register } = getActions();
+				register({email, password, name, username, repeatPassword});
 			},
 			checkCurrentUser: () => {
 				if (sessionStorage.getItem('access_token')) {
@@ -132,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							access_token: access_token,
 							current_user: user,
 							email: '',
-							password: ''
+							password: '',
 						});
 						sessionStorage.setItem('access_token', access_token);
 						sessionStorage.setItem('current_user', JSON.stringify(user));
@@ -154,20 +156,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					}
 
-					const response = await fetch(`${url}/api/register`, option)
+					const response = await fetch(`${url}/signup`, option)
 					const datos = await response.json()
 
 					if (datos.msg) {
 						console.log(datos)
-						toast.error(datos.msg)
+						// toast.error(datos.msg)
 					} else {
 						console.log(datos)
 						const { access_token, user } = datos
 						setStore({
 							access_token: access_token,
 							current_user: user,
+							username: '',
 							email: '',
-							password: ''
+							password: '',
+
 						})
 						sessionStorage.setItem('access_token', access_token)
 						sessionStorage.setItem('current_user', JSON.stringify(user))
@@ -190,6 +194,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					sessionStorage.removeItem('current_user')
 				}
 			},
+			handleFormChange: (e) => {
+				const { name, value } = e.target
+                setStore({
+                    [name]: value
+                })
+			}
 		}
 	};
 };
