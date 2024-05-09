@@ -12,12 +12,12 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import PipoForm from "./pages/PipoForm";
 import UserProfile from "./pages/UserProfile";
-import GlobalContextProvider from "./context/GlobalContextProvider";
 import injectContext from "./store/AppContext";
 
 
 
 const App = () => {
+
     return (
             <BrowserRouter>
                 <Navbar />
