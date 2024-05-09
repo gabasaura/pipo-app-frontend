@@ -5,6 +5,7 @@ import { Context } from '../store/AppContext';
 const UserProfile = () => {
     const { store, actions } = useContext(Context);
 
+    const [password] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
@@ -28,23 +29,27 @@ const UserProfile = () => {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-8">
-                            <h2 className="text-center mb-4">User Profile</h2>
-                            <div className="mb-3">
+                            <h2 className="text-center my-4">User Profile</h2>
+                            <div className="my-3">
                                 <div>avatar</div>
                             </div>
-                            <div className="mb-3">
-                                <h4>User Name</h4>{store?.current_user?.username}
-                                <h4>User Email</h4>{store?.current_user?.email}
-                                <h4>Name</h4>
+                            <div className="my-5">
+                                <h4>User Name: {store?.current_user?.username}</h4>
+                                <h4>User Email: {store?.current_user?.email}</h4>
+                                <h4>Name: {store?.current_user?.email}</h4>
                             </div>
-                            <form>
-                                <div className="mb-3">
-                                    <h3>Change Password</h3>
-                                    <label htmlFor="newPassword" className="form-label">New Password:</label>
+                            <hr />
+                            <form className='my-4'>
+                                <div className="my-3 ">
+                                    <h4>Change Password</h4>
+                                        <label htmlFor="password" className="form-label mt-3">Current Password</label>
+                                        <input type="password" className="form-control" id="password" name="password" value={password} onChange={store.handleChange} />
+                                    
+                                    <label htmlFor="newPassword" className="form-label mt-3">New Password:</label>
                                     <input type="password" className="form-control" id="newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="confirmNewPassword" className="form-label">Confirm New Password:</label>
+                               
+                                
+                                    <label htmlFor="confirmNewPassword" className="form-label mt-3">Confirm New Password:</label>
                                     <input type="password" className="form-control" id="confirmNewPassword" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} />
                                 </div>
                                 <button type="button" className="btn btn-primary" onClick={handlePasswordChange}>Change Password</button>
