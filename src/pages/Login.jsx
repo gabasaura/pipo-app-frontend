@@ -1,11 +1,16 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Context } from "../store/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const { store, actions } = useContext(Context);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate()
 
+    useEffect(() => {
+        if (store.access_token !== null) navigate("/")
+    }, [store.access_token])
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === "email") setEmail(value);

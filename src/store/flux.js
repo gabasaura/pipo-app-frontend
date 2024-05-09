@@ -10,8 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			repeatPassword: "",
 			name: "",
 			current_user: null,
+			access_token: null,
 			error: '',
-			accessToken: null,
 			pipos: []
 		},
 		actions: {

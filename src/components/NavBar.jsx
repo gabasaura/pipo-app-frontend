@@ -42,13 +42,7 @@ function Navbar() {
                             <li className="nav-item">
                                 <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/contact">CONTACT</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/login">LOGIN</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/register">REGISTER</Link>
-                            </li>
-                            {!!store.accessToken &&
+                            {!!store.access_token ? (
                                 <>
                                     <li className="nav-item">
                                         <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/userprofile">USER PROFILE</Link>
@@ -56,7 +50,20 @@ function Navbar() {
                                     <li className="nav-item">
                                         <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/pipoform">ADD PIPO</Link>
                                     </li>
+                                    <li className="nav-item">
+                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/" onClick={actions.logout}> LOG OUT</Link>
+                                    </li>
                                 </>
+                            ) : (
+                                <>
+                                    <li className="nav-item">
+                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/login">LOGIN</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/register">REGISTER</Link>
+                                    </li>
+                                </>
+                            )
                             }
 
                         </ul>
