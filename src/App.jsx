@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import PipoForm from "./pages/PipoForm";
-import UserProfile from "./pages/UserProfile";
+import UserProfile from "./pages/userprofile";
 import injectContext from "./store/AppContext";
 import { RecoverPassword } from "./pages/RecoverPassword";
 import ResetPassword from "./pages/resetpassword";
@@ -33,7 +33,6 @@ const App = () => {
                     <Route path="/resetpassword" element={<ResetPassword />} />
                     <Route path="/pipoform" element={<PipoForm />} />
                     <Route path="/piposlist" element={<PiposList />} />
-                    <Route path="/piposlist/:pipo" element={<PiposList />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
