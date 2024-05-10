@@ -8,13 +8,13 @@ import PipoCard from "../components/PipoCard";
 import NoPipoList from "../components/NoPipoList";
 
 const PiposList = () => {
-    
-    const {store, actions } = useContext(Context)
-    
+
+    const { store, actions } = useContext(Context)
+
     useEffect(() => {
-		actions.getPipos();
-        
-	}, []);
+        actions.getPipos();
+
+    }, []);
 
 
 
@@ -22,17 +22,17 @@ const PiposList = () => {
     return (
         <>
 
-         {store.pipos.filter(pipo => !pipo.active).map((pipo) => (
-            <PipoCard 
-            key={pipo.id}
-            id={pipo.id}
-            name={pipo.pipo_name}
-            address={pipo.address}
-            addPipo={actions.activatePipo}
-            deletePipo={actions.deletePipo}
-            />
-         ))}
-
+            {store.pipos.filter(pipo => !pipo.active).map((pipo) => (
+                <PipoCard
+                    key={pipo.id}
+                    id={pipo.id}
+                    name={pipo.pipo_name}
+                    address={pipo.address}
+                    addPipo={actions.activatePipo}
+                    deletePipo={actions.deletePipo}
+                />
+            ))}
+            {store.pipos.filter(pipo => !pipo.active).length === 0 && <NoPipoList />}
         </>
     );
 }
