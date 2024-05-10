@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import StarRating from '../components/Ranking';
 import MiniMap from '../components/MiniMap';
 import { Context } from '../store/AppContext';
-
+import { toast } from "react-toastify";
 
 const PipoForm = () => {
 
@@ -65,9 +65,8 @@ const PipoForm = () => {
             .then(data => {
                 console.log(data)
                 console.log('Pipo Registrado Con Éxito', data);
-              
-                
-                
+                if (data.msg) toast.error(data.msg)
+                    else toast.success(data.success)
             
 
             })

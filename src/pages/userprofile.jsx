@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { Context } from '../store/AppContext';
-
+import { toast } from "react-toastify";
 
 const UserProfile = () => {
     const { store, actions } = useContext(Context);
@@ -43,7 +43,10 @@ const UserProfile = () => {
             .then(response => response.json())
             .then(data => {
                 console.log(data)
+                if (data.msg) toast.error(data.msg)
+                    else toast.success(data["success"])
                 console.log('Password has changed', data);
+                
 
             })
             .catch(error => console.error('Error:', error));

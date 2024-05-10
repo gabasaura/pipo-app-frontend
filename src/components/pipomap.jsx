@@ -140,7 +140,7 @@ function PipoMap() {
 								<div className="modal-footer">
 									<button type="submit" className="btn btn-outline-info" onSubmit={handleSubmitComment}>Submit</button>
 
-									<button type="button" className="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+									<button type="button" className="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>

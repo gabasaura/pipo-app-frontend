@@ -21,6 +21,7 @@ const PiposList = () => {
 
     return (
         <>
+
          {store.pipos.filter(pipo => !pipo.active).map((pipo) => (
             <PipoCard 
             key={pipo.id}
