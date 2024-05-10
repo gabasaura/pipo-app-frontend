@@ -164,14 +164,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                         // toast.error(datos.msg)
                     } else {
                         console.log(datos)
+                        const { access_token, user } = datos;
                         setStore({
-                            access_token: null,
-                            current_user: null,
-                            username: '',
+                            access_token: access_token,
+                            current_user: user,
                             email: '',
                             password: '',
-
-                        })
+                        });
+                        sessionStorage.setItem('access_token', access_token);
+                        sessionStorage.setItem('current_user', JSON.stringify(user));
                     }
 
                 } catch (error) {
@@ -194,17 +195,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                     const data = await response.json();
 
                     if (response.ok) {
-                        const { access_token, user } = data;
                         setStore({
                             access_token: null,
                             current_user: null,
                             email: '',
-                            code: '',
                             password: '',
-                            confirmPassword: '', // Clear confirm password field too
                         });
-                        sessionStorage.setItem('access_token', access_token);
-                        sessionStorage.setItem('current_user', JSON.stringify(user));
+                       
                         console.log('Password reset successfully!');
                     } else {
                         console.error('Password reset failed:', data.error || 'Unknown error');
