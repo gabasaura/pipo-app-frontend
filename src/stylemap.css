@@ -7,10 +7,7 @@ body, * {
     border:none;
   }
   .leaflet-touch .leaflet-bar a {
-    width: 37px;
-    height: 46px;
     font-size: 30px;
-    line-height: normal;
   }
   .leaflet-popup-content-wrapper{
     box-shadow: none;
