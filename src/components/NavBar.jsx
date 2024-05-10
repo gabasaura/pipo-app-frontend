@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from 'react';
 import { Context } from "../store/AppContext";

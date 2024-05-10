@@ -164,17 +164,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// toast.error(datos.msg)
 					} else {
 						console.log(datos)
-						const { access_token, user } = datos
 						setStore({
-							access_token: access_token,
-							current_user: user,
+							access_token: null,
+							current_user: null,
 							username: '',
 							email: '',
 							password: '',
 
 						})
-						sessionStorage.setItem('access_token', access_token)
-						sessionStorage.setItem('current_user', JSON.stringify(user))
 					}
 
 				} catch (error) {
@@ -182,6 +179,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			},
+            reset: async (credentials) => {
+                try {
+                    const { url } = getStore();
+                    const options = {
+                        method: 'POST',
+                        body: JSON.stringify(credentials),
+                        headers: {
+                            'Content-type': 'application/json'
+                        }
+                    };
+            
+                    const response = await fetch(`${url}/reset_password`, options);
+                    const data = await response.json();
+            
+                    if (response.ok) {
+                        const { access_token, user } = data;
+                        setStore({
+                            access_token: access_token,
+                            current_user: user,
+                            email: '',
+                            code: '',
+                            password: '',
+                            confirmPassword: '', // Clear confirm password field too
+                        });
+                        sessionStorage.setItem('access_token', access_token);
+                        sessionStorage.setItem('current_user', JSON.stringify(user));
+                        console.log('Password reset successfully!');
+                    } else {
+                        console.error('Password reset failed:', data.error || 'Unknown error');
+                        //  error message to the user
+                    }
+            
+                } catch (error) {
+                    console.error('Password reset failed:', error.message);
+                    // Display error message to the user
+                }
+            },
+            
 			logout: () => {
 				if (sessionStorage.getItem('access_token')) {
 					setStore({

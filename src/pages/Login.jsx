@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { Context } from "../store/AppContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
     const { store, actions } = useContext(Context);
@@ -11,6 +11,7 @@ const Login = () => {
     useEffect(() => {
         if (store.access_token !== null) navigate("/")
     }, [store.access_token])
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === "email") setEmail(value);
@@ -42,10 +43,10 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card-footer d-flex justify-content-end">
-                        <div className="ms-auto mx-3">
-                            <button type="submit" className="btn btn-primary">Log In</button>
-                        </div>
+                    <div className="card-footer d-flex justify-content-between px-5">
+                        <small>
+                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/recoverpassword">Forgot your password?</Link></small>
+                            <button type="submit" className="btn btn-primary">Log In</button>        
                     </div>
                 </div>
             </form>
