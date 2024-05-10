@@ -13,6 +13,7 @@ import UserProfile from "./pages/userprofile";
 import injectContext from "./store/AppContext";
 import { RecoverPassword } from "./pages/RecoverPassword";
 import ResetPassword from "./pages/resetpassword";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -35,6 +36,7 @@ const App = () => {
                     <Route path="/piposlist" element={<PiposList />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
+                <ToastContainer />
             </BrowserRouter>
     )
 }

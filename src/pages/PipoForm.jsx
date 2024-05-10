@@ -31,6 +31,17 @@ const PipoForm = () => {
         event.preventDefault();
         const { access_token } = store
         const url = 'http://127.0.0.1:5000/pipos';
+        console.log({
+            pipo_name: toiletName,
+            address: toiletAddress,
+            latitude: location.latitude,
+            longitude: location.longitude,
+            free: isFree,
+            disabled: isDisabledFriendly,
+            babychanger: babyChanger,
+            toiletpaper: toiletPaper,
+
+        })
         const options = {
             method: "POST",
             headers: {
@@ -44,7 +55,7 @@ const PipoForm = () => {
                 longitude: location.longitude,
                 free: isFree,
                 disabled: isDisabledFriendly,
-                babyChanger: babyChanger,
+                babychanger: babyChanger,
                 toiletpaper: toiletPaper,
 
             })
@@ -63,7 +74,7 @@ const PipoForm = () => {
             .catch(error => console.error('Error al registrar:', error));
 
 
-        alert("Toilet added successfully.");
+        
     };
 
     function getLocation() {

@@ -8,12 +8,12 @@ import PipoCard from "../components/PipoCard";
 import NoPipoList from "../components/NoPipoList";
 
 const PiposList = () => {
-    const [pipos, setPipos] = useState(null)
+    
     const {store, actions } = useContext(Context)
     
     useEffect(() => {
 		actions.getPipos();
-        setPipos(store.pipos)
+        
 	}, []);
 
 
