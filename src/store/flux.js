@@ -246,6 +246,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(error.message);
 				  });
 			},
+			handleRegisterPipo: (e) => {
+				e.preventDefault()
+				const {access_token, username} = getStore()
+        		
+				registerPipo(access_token, username,)
+			},
+			registerPipo: async (credenciales) => {
+				try {
+					const { url } = getStore()
+					const option = {
+						method: 'POST',
+						body: JSON.stringify(credenciales),
+						headers: {
+							'Content-type': 'application/json'
+						}
+					}
+
+					const response = await fetch(`${url}/signup`, option)
+					const datos = await response.json()
+
+					if (datos.msg) {
+						console.log(datos)
+						// toast.error(datos.msg)
+					} else {
+						console.log(datos)
+						const { access_token, user } = datos
+						setStore({
+							access_token: access_token,
+							current_user: user,
+							username: '',
+							email: '',
+							password: '',
+
+						})
+						sessionStorage.setItem('access_token', access_token)
+						sessionStorage.setItem('current_user', JSON.stringify(user))
+					}
+
+				} catch (error) {
+					console.log(error.message)
+				}
+
+			}
 		}
 	};
 };

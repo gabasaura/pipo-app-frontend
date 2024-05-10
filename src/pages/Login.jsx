@@ -44,7 +44,7 @@ const Login = () => {
                     </div>
                     <div className="card-footer d-flex justify-content-end">
                         <div className="ms-auto mx-3">
-                            <button type="submit" className="btn btn-primary">Log In</button>
+                            <button type="submit" className="btn btn-outline-info">Log In</button>
                         </div>
                     </div>
                 </div>

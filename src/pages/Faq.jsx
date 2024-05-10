@@ -6,7 +6,7 @@ const Faq = () => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-8">
-                    <h2 className="text-center mb-4">FAQ: Public Toilet Locator</h2>
+                    <h2 className="text-center my-4">FAQ: Public Toilet Locator</h2>
                     <div className="accordion" id="faqAccordion">
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="heading1">

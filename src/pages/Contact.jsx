@@ -64,7 +64,7 @@ const Contact = () => {
 
     return (
         <div className="py-md-5 align-items-center justify-content-center">
-            <h1 className="mb-3 text-center">Contact Us</h1>
+            <h1 className=" text-center">Contact Us</h1>
             <form className="rounded-3" onSubmit={handleFormSubmit}>
                 <div className="mt-5 w-75 card mx-auto p-0">
                     <div className="card-body">

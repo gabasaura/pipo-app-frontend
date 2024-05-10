@@ -1,8 +1,19 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import StarRating from '../components/Ranking';
+import MiniMap from '../components/MiniMap';
+import { Context } from '../store/AppContext';
+
 
 const PipoForm = () => {
+
+    const { store, actions } = useContext(Context)
+
+    const [location, setLocation] = useState({
+        latitude: "",
+        longitude: ""
+    })
+
     const [toiletName, setToiletName] = useState("");
     const [toiletAddress, setToiletAddress] = useState("");
     const [latitude, setLatitude] = useState("");
@@ -14,105 +25,144 @@ const PipoForm = () => {
     const [toilets, setToilets] = useState([]);
     const [rating, setRating] = useState(0);
 
+
+
     const handleAddToilet = (event) => {
         event.preventDefault();
-        const newToilet = {
-            name: toiletName,
-            address: toiletAddress,
-            location: { latitude, longitude },
-            icons: {
-                toiletPaper,
-                isDisabledFriendly,
-                isFree,
-                babyChanger
+        const { access_token } = store
+        const url = 'http://127.0.0.1:5000/pipos';
+        const options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + access_token
             },
-            rating
-        };
+            body: JSON.stringify({
+                pipo_name: toiletName,
+                address: toiletAddress,
+                latitude: location.latitude,
+                longitude: location.longitude,
+                free: isFree,
+                disabled: isDisabledFriendly,
+                babyChanger: babyChanger,
+                toiletpaper: toiletPaper,
 
-        setToilets([...toilets, newToilet]);
-        setToiletName("");
-        setToiletAddress("");
-        setLatitude("");
-        setLongitude("");
-        setToiletPaper(false);
-        setIsDisabledFriendly(false);
-        setIsFree(false);
-        setBabyChanger(false);
-        setRating(0);
+            })
+        };
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                console.log('Pipo Registrado Con Éxito', data);
+              
+                
+                
+            
+
+            })
+            .catch(error => console.error('Error al registrar:', error));
+
+
         alert("Toilet added successfully.");
     };
 
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            console.log("Position not available");
+        }
+    }
+
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+    }
+
+    function showError(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                x.innerHTML = "User denied the request for Geolocation."
+                break;
+            case error.POSITION_UNAVAILABLE:
+                x.innerHTML = "Location information is unavailable."
+                break;
+            case error.TIMEOUT:
+                x.innerHTML = "The request to get user location timed out."
+                break;
+            case error.UNKNOWN_ERROR:
+                x.innerHTML = "An unknown error occurred."
+                break;
+        }
+    }
+
+
     return (
         <div className="container">
-        <div className="row justify-content-center">
-            <div className="col-md-8">
-                <h3 className="text-center my-4">Add Toilet</h3>
-                <form onSubmit={handleAddToilet}>
-                    <div className="mb-3">
-                        <label htmlFor="toiletName" className="form-label">Toilet Name:</label>
-                        <input type="text" className="form-control" id="toiletName" value={toiletName} onChange={(e) => setToiletName(e.target.value)} />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="toiletAddress" className="form-label">Toilet Address:</label>
-                        <input type="text" className="form-control" id="toiletAddress" value={toiletAddress} onChange={(e) => setToiletAddress(e.target.value)} />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="latitude" className="form-label">Latitude:</label>
-                        <input type="text" className="form-control" id="latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)} />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="longitude" className="form-label">Longitude:</label>
-                        <input type="text" className="form-control" id="longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)} />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-check-label">The Toilet:</label>
-                        <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="toiletPaper" checked={toiletPaper} onChange={(e) => setToiletPaper(e.target.checked)} />
-                            <label htmlFor="toiletPaper" className="form-check-label">Have Toilet Paper?</label>
+            <div className="row justify-content-center">
+                <div className="col-md-8">
+                    <h3 className="text-center my-4">Add Toilet</h3>
+                    <form onSubmit={handleAddToilet}>
+                        <div className="mb-3">
+                            <label htmlFor="toiletName" className="form-label">Toilet Name:</label>
+                            <input type="text" className="form-control" id="toiletName" value={toiletName} onChange={(e) => setToiletName(e.target.value)} />
                         </div>
-                        <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="isDisabledFriendly" checked={isDisabledFriendly} onChange={(e) => setIsDisabledFriendly(e.target.checked)} />
-                            <label htmlFor="isDisabledFriendly" className="form-check-label">Is Disabled Friendly?</label>
+                        <div className="mb-3">
+                            <label htmlFor="toiletAddress" className="form-label">Toilet Address:</label>
+                            <input type="text" className="form-control" id="toiletAddress" value={toiletAddress} onChange={(e) => setToiletAddress(e.target.value)} />
                         </div>
-                        <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="isFree" checked={isFree} onChange={(e) => setIsFree(e.target.checked)} />
-                            <label htmlFor="isFree" className="form-check-label">Is It Free?</label>
+                        <div className="mb-3">
+                            <label htmlFor="latitude" className="form-label">Latitude:</label>
+                            <input type="text" className="form-control" id="latitude" value={location.latitude} onChange={(e) => setLatitude(e.target.value)} />
                         </div>
-                        <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="hasBabyChanging" checked={babyChanger} onChange={(e) => setBabyChanger(e.target.checked)} />
-                            <label htmlFor="hasBabyChanging" className="form-check-label">Does It Have a Baby Changing?</label>
+                        <div className="mb-3">
+                            <label htmlFor="longitude" className="form-label">Longitude:</label>
+                            <input type="text" className="form-control" id="longitude" value={location.longitude} onChange={(e) => setLongitude(e.target.value)} />
                         </div>
-                        <hr />
-                        <label htmlFor="rating">Choose a rating</label>
-                        <select id="rating" value={rating} onChange={(e) => setRating(parseInt(e.target.value))}>
-                            <option value={0}>No rating</option>
-                            <option value={1}>1 star</option>
-                            <option value={2}>2 stars</option>
-                            <option value={3}>3 stars</option>
-                            <option value={4}>4 stars</option>
-                            <option value={5}>5 stars</option>
-                        </select>
-                        <StarRating rating={rating} />
-                    </div>
-                    <button type="submit" className="btn btn-primary mb-3">Submit</button>
-                </form>
-                <h4>Your Added Toilets:</h4>
-                <ul>
-                    {toilets.map((toilet, index) => (
-                        <li key={index}>
-                            {toilet.name} - {toilet.address} - {toilet.location.latitude}, {toilet.location.longitude} - Rating: {toilet.rating}
-                            <div>
-                                <span>Toilet Paper: {toilet.icons.toiletPaper ? "True" : "False"}</span> | 
-                                <span> Disabled Friendly: {toilet.icons.isDisabledFriendly ? "True" : "False"}</span> | 
-                                <span> Free: {toilet.icons.isFree ? "True" : "False"}</span> | 
-                                <span> Baby Changing: {toilet.icons.babyChanger ? "True" : "False"}</span>
+                        <div className="mb-3">
+                            <label className="form-check-label">The Toilet:</label>
+                            <div className="form-check">
+                                <input type="checkbox" className="form-check-input" id="toiletPaper" checked={toiletPaper} onChange={(e) => setToiletPaper(e.target.checked)} />
+                                <label htmlFor="toiletPaper" className="form-check-label">Have Toilet Paper?</label>
                             </div>
-                        </li>
-                    ))}
-                </ul>
+                            <div className="form-check">
+                                <input type="checkbox" className="form-check-input" id="isDisabledFriendly" checked={isDisabledFriendly} onChange={(e) => setIsDisabledFriendly(e.target.checked)} />
+                                <label htmlFor="isDisabledFriendly" className="form-check-label">Is Disabled Friendly?</label>
+                            </div>
+                            <div className="form-check">
+                                <input type="checkbox" className="form-check-input" id="isFree" checked={isFree} onChange={(e) => setIsFree(e.target.checked)} />
+                                <label htmlFor="isFree" className="form-check-label">Is It Free?</label>
+                            </div>
+                            <div className="form-check">
+                                <input type="checkbox" className="form-check-input" id="hasBabyChanging" checked={babyChanger} onChange={(e) => setBabyChanger(e.target.checked)} />
+                                <label htmlFor="hasBabyChanging" className="form-check-label">Does It Have a Baby Changing?</label>
+                            </div>
+                            <hr />
+                            
+                        </div>
+                        <button type="submit" className="btn btn-primary mb-3">Submit</button>
+                    </form>
+                    
+                    <ul>
+                        {toilets.map((toilet, index) => (
+                            <li key={index}>
+                                {toilet.name} - {toilet.address} - {toilet.location.latitude}, {toilet.location.longitude} - Rating: {toilet.rating}
+                                <div>
+                                    <span>Toilet Paper: {toilet.icons.toiletPaper ? "True" : "False"}</span> |
+                                    <span> Disabled Friendly: {toilet.icons.isDisabledFriendly ? "True" : "False"}</span> |
+                                    <span> Free: {toilet.icons.isFree ? "True" : "False"}</span> |
+                                    <span> Baby Changing: {toilet.icons.babyChanger ? "True" : "False"}</span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    <MiniMap onClick={getLocation}
+                        location={location}
+                        setLocation={setLocation}
+                    />
+                </div>
             </div>
         </div>
-    </div>
     );
 }
 

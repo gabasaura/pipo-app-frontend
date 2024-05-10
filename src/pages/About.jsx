@@ -6,7 +6,7 @@ const About = () => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-8">
-                    <h2 className="text-center mb-4">About This Project</h2>
+                    <h2 className="text-center my-4">About This Project</h2>
                     <p>
                         This web app was developed by two Chilean developers as a project for 4Geeks Academy. 
                         Our goal was to create a user-friendly application that helps people find nearby public toilet locations easily.
