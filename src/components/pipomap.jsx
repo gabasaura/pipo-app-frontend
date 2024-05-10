@@ -138,9 +138,9 @@ function PipoMap() {
 									<LeaveComment id={`comment-${pipo.id}`} text={userComment} onChange={handleCommentChange}/>
 								</div>
 								<div className="modal-footer">
-									<button type="submit" className="btn btn-primary" onSubmit={handleSubmitComment}>Submit</button>
+									<button type="submit" className="btn btn-outline-info" onSubmit={handleSubmitComment}>Submit</button>
 
-									<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									<button type="button" className="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
