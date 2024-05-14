@@ -46,7 +46,7 @@ const Login = () => {
                     <div className="card-footer d-flex justify-content-between px-5">
                         <small>
                         <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/recoverpassword">Forgot your password?</Link></small>
-                            <button type="submit" className="btn btn-primary">Log In</button>        
+                            <button type="submit" className="btn btn-outline-info">Log In</button>        
                     </div>
                 </div>
             </form>

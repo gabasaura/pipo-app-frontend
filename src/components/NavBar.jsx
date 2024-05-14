@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from 'react';
 import { Context } from "../store/AppContext";
-
+import "../styles/navbar.css"
 
 
 function Navbar() {
@@ -16,10 +16,10 @@ function Navbar() {
     const location = useLocation()
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Offcanvas navbar large">
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Offcanvas navbar large">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">PIPO</Link>
-                <button className="navbar-toggler" type="button" onClick={toggleMenu} aria-label="Toggle navigation">
+                <button className="navbar-toggler" type="button" onClick={toggleMenu} aria-label="Toggle navigation" bs-toggle="offcanvas" bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className={`offcanvas offcanvas-end text-bg-dark ${isMenuOpen ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">

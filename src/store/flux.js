@@ -150,7 +150,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						sessionStorage.setItem('access_token', access_token);
 						sessionStorage.setItem('current_user', JSON.stringify(user));
-					}
+						toast.success("Log in sucessfull")
+					}	
 
 				} catch (error) {
 					console.log(error.message);
@@ -239,6 +240,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					sessionStorage.removeItem('access_token')
 					sessionStorage.removeItem('current_user')
+					toast.success("Log out Successfull")
 				}
 			},
 			handleFormChange: (e) => {
