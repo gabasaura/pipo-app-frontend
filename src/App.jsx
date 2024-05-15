@@ -14,6 +14,7 @@ import injectContext from "./store/AppContext";
 import { RecoverPassword } from "./pages/RecoverPassword";
 import ResetPassword from "./pages/resetpassword";
 import { ToastContainer } from "react-toastify";
+import PipoNavbar from "./components/NavBar";
 
 
 
@@ -21,7 +22,7 @@ const App = () => {
 
     return (
             <BrowserRouter>
-                <Navbar />
+                <PipoNavbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
