@@ -30,16 +30,17 @@ function PipoMap() {
 
 	const handleSubmitComment = (e) => {
 		e.preventDefault();
-        {
+        {	
+			const { access_token }  = store
             const url = `http://127.0.0.1:5000/pipo/${id}/comment`;
             const options = {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+					'Authorization': 'Bearer ' + access_token
                 },
                 body: JSON.stringify({
-                    comment: comment,
-                    user_id: user_id,
+                    comment: userComment
                 })
             };
             
@@ -135,7 +136,7 @@ function PipoMap() {
 									)}
 
 									<br />
-									<LeaveComment id={`comment-${pipo.id}`} text={userComment} onChange={handleCommentChange}/>
+									<LeaveComment id={`comment-${pipo.id}`} text={userComment} onChange={handleCommentChange} onSubmit={handleSubmitComment}/>
 								</div>
 								<div className="modal-footer">
 									<button type="submit" className="btn btn-outline-info" onSubmit={handleSubmitComment}>Submit</button>
