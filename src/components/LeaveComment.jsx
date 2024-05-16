@@ -6,11 +6,11 @@ const LeaveComment = ({id, text, onChange, onSubmit}) => {
 	return (
 		<div>
 			<form onSubmit={onSubmit}>
-			<div className="mb-3">
-				<label htmlFor="exampleFormControlTextarea1" className="form-label">Dejar Comentario</label>
+			<div className="mb-3 my-1 mx-4">
+				<label htmlFor="exampleFormControlTextarea1" className="form-label m-1">Leave / Edit Comment</label>
 				<textarea className="form-control" value={text} id={id} rows="3" onChange={onChange}></textarea>
 			</div>
-			<button type="submit" className="btn btn-outline-info" >Submit</button>
+			<button type="submit" className="btn btn-outline-info mx-4 mb-3" >Send</button>
 			</form>
 		</div>
 	)

@@ -10,6 +10,8 @@ import Comments from './Comments';
 import LeaveComment from './LeaveComment';
 import StarRating from './Ranking';
 import { Context } from '../store/AppContext';
+import CreateAccount from './CreateAccount';
+import { toast } from "react-toastify";
 
 
 function PipoMap() {
@@ -48,6 +50,7 @@ function PipoMap() {
                 .then(response => response.json())
                 .then(data => {
                     console.log('Comentario enviado con éxito', data);
+					toast.success('Comment Successful')
                 })
                 .catch(error => console.error('Error al Comentar:', error));
             
@@ -136,12 +139,15 @@ function PipoMap() {
 									)}
 
 									<br />
-									<LeaveComment id={pipo.id} text={userComment} onChange={handleCommentChange} onSubmit={(e) => handleSubmitComment(e, pipo.id)}/>
+									
+									
 								</div>
-								<div className="modal-footer">
+								<div className="modal-content d-flex justify-content-center">
 									{/* <button type="submit" className="btn btn-outline-info" onSubmit={handleSubmitComment}>Submit</button> */}
-
-									<button type="button" className="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+									{store.access_token ? <LeaveComment id={pipo.id} text={userComment} onChange={handleCommentChange} onSubmit={(e) => handleSubmitComment(e, pipo.id)}/>  :
+									<CreateAccount />
+									}
+									{/* <button type="button" className="btn btn-outline-dark" data-bs-dismiss="modal">Close</button> */}
 								</div>
 							</div>
 						</div>
