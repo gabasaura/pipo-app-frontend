@@ -11,7 +11,7 @@ function PipoNavbar() {
     return (
         <>
 
-            <Navbar expand="xl" className="bg-body-tertiary">
+            <Navbar expand="lg" className="bg-body-tertiary">
                 <Container fluid>
                     <Navbar.Brand as={Link} to="/">PIPO</Navbar.Brand>
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
