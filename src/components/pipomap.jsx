@@ -28,7 +28,7 @@ function PipoMap() {
 		setUserComment(e.target.value);
 	}
 
-	const handleSubmitComment = (e) => {
+	const handleSubmitComment = (e, id) => {
 		e.preventDefault();
         {	
 			const { access_token }  = store
@@ -136,10 +136,10 @@ function PipoMap() {
 									)}
 
 									<br />
-									<LeaveComment id={`comment-${pipo.id}`} text={userComment} onChange={handleCommentChange} onSubmit={handleSubmitComment}/>
+									<LeaveComment id={pipo.id} text={userComment} onChange={handleCommentChange} onSubmit={(e) => handleSubmitComment(e, pipo.id)}/>
 								</div>
 								<div className="modal-footer">
-									<button type="submit" className="btn btn-outline-info" onSubmit={handleSubmitComment}>Submit</button>
+									{/* <button type="submit" className="btn btn-outline-info" onSubmit={handleSubmitComment}>Submit</button> */}
 
 									<button type="button" className="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
 								</div>
