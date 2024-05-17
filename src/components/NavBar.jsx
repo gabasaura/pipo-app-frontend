@@ -41,7 +41,7 @@ function PipoNavbar() {
                                 ) : (
                                     <>
                                         <Nav.Link as={Link} to="/login" className={location.pathname === '/login' ? 'active' : ''}>LOGIN</Nav.Link>
-                                        <Nav.Link as={Link} to="/register" className={location.pathname === '/register' ? 'active' : ''}>REGISTER</Nav.Link>
+                                        <Nav.Link as={Link} to="/register" className={location.pathname === '/register' ? 'active' : ''}>Sign Up</Nav.Link>
                                     </>
                                 )}
                             </Nav>
