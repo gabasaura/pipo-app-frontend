@@ -41,11 +41,10 @@ useEffect(()=> {
 
     return (
         <div>
-            <button onClick={getLocation}>Click to get location</button>
+            <button className='btn btn-outline-info rounded mt-3 mb-3'  onClick={getLocation}>Click to get location</button>
             {location && (
                 <div>
-                    <p>Latitude: {location.latitude}</p>
-                    <p>Longitude: {location.longitude}</p>
+                    
                 </div>
             )}
         </div>

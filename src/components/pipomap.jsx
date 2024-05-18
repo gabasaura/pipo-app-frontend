@@ -12,6 +12,8 @@ import StarRating from './Ranking';
 import { Context } from '../store/AppContext';
 import CreateAccount from './CreateAccount';
 import { toast } from "react-toastify";
+import Calificar from './calificar';
+
 
 
 function PipoMap() {
@@ -56,7 +58,8 @@ function PipoMap() {
             
             ; 
         }
-
+		actions.getPipos()
+		setUserComment("")
 	}
 
 
@@ -126,7 +129,7 @@ function PipoMap() {
 										pipo.free ?
 										<span data-bs-toggle="tooltip" title="Free" data-bs-placement="top"><MdAttachMoney size={24} style={{ color: "#ccc" }} /> </span> : <span data-bs-toggle="tooltip" title="Paid" data-bs-placement="top"><MdAttachMoney size={24} /> </span>}
 									<p data-bs-toggle="modal" data-bs-target={`#modal-${pipo.id}`}></p>
-
+									<Calificar />
 									<h5>Comments:</h5>
 									{pipo.comments.map(comentario =>
 										<Comments

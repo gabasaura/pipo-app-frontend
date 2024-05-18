@@ -113,7 +113,7 @@ const Register = () => {
 
     return (
         <div className="py-md-5 align-items-center justify-content-center">
-            <h1 className="mb-3 text-center">Register</h1>
+            <h1 className="mb-3 text-center">Sign Up</h1>
             <form className="rounded-3" onSubmit={actions.handleRegister}>
                 <div className="mt-5 w-75 w-lg-100 card mx-auto p-0">
                     <div className="card-body">
