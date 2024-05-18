@@ -66,14 +66,16 @@ const PipoForm = () => {
                 console.log(data)
                 console.log('Pipo Registrado Con Éxito', data);
                 if (data.msg) toast.error(data.msg)
-                    else toast.success(data.success)
-            
+                else toast.success(data.success)
+
 
             })
             .catch(error => console.error('Error al registrar:', error));
 
-
-        
+        setToiletName("")
+        setToiletAddress("")
+        setLongitude("")
+        setLongitude("")
     };
 
     function getLocation() {
@@ -111,16 +113,20 @@ const PipoForm = () => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-8">
-                    <h3 className="text-center my-4">Add Toilet</h3>
+                    <h3 className="text-center my-4">Add a New PIPO</h3>
                     <form onSubmit={handleAddToilet}>
                         <div className="mb-3">
-                            <label htmlFor="toiletName" className="form-label">Toilet Name:</label>
+                            <label htmlFor="toiletName" className="form-label">Pipo Name:</label>
                             <input type="text" className="form-control" id="toiletName" value={toiletName} onChange={(e) => setToiletName(e.target.value)} />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="toiletAddress" className="form-label">Toilet Address:</label>
+                            <label htmlFor="toiletAddress" className="form-label">Pipo Address:</label>
                             <input type="text" className="form-control" id="toiletAddress" value={toiletAddress} onChange={(e) => setToiletAddress(e.target.value)} />
                         </div>
+                        <MiniMap onClick={getLocation}
+                            location={location}
+                            setLocation={setLocation}
+                        />
                         <div className="mb-3">
                             <label htmlFor="latitude" className="form-label">Latitude:</label>
                             <input type="text" className="form-control" id="latitude" value={location.latitude} onChange={(e) => setLatitude(e.target.value)} />
@@ -148,11 +154,11 @@ const PipoForm = () => {
                                 <label htmlFor="hasBabyChanging" className="form-check-label">Does It Have a Baby Changing?</label>
                             </div>
                             <hr />
-                            
+
                         </div>
-                        <button type="submit" className="btn btn-primary mb-3">Submit</button>
+                        <button type="submit" className="btn btn-outline-info mb-3">Submit</button>
                     </form>
-                    
+
                     <ul>
                         {toilets.map((toilet, index) => (
                             <li key={index}>
@@ -166,10 +172,7 @@ const PipoForm = () => {
                             </li>
                         ))}
                     </ul>
-                    <MiniMap onClick={getLocation}
-                        location={location}
-                        setLocation={setLocation}
-                    />
+
                 </div>
             </div>
         </div>

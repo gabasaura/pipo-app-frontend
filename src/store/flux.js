@@ -50,17 +50,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const { email, password, repeatPassword } = getStore();
 				if (!email.trim() || !getActions().isValidEmail(email)) {
 					setStore({ error: "Please enter a valid email address." });
-					toast.error("Please enter a valid email address." )
+					toast.error("Please enter a valid email address.")
 					return true; // Form is invalid
 				}
 				if (!password.trim() || password.length < 6) {
 					setStore({ error: "Password must be at least 6 characters." });
-					toast.error("Password must be at least 6 characters." )
+					toast.error("Password must be at least 6 characters.")
 					return true; // Form is invalid
 				}
 				if (password !== repeatPassword) {
 					setStore({ error: "Password doesn't match" });
-					toast.error("Password doesn't match" )
+					toast.error("Password doesn't match")
 					return true; // Form is invalid
 				}
 				return false; // Form is valid
@@ -136,11 +136,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (data.msg) {
 						console.log(data);
 						if (data.msg) toast.error(data.msg)
-							else toast.success(data.success)
-						
+						else toast.success(data.success)
+
 					} else {
 						console.log(data);
-						
+
 						const { access_token, user } = data;
 						setStore({
 							access_token: access_token,
@@ -150,6 +150,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						sessionStorage.setItem('access_token', access_token);
 						sessionStorage.setItem('current_user', JSON.stringify(user));
+						toast.success("Log in sucessfull")
 					}
 
 				} catch (error) {
@@ -174,11 +175,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (datos.msg) {
 						console.log(datos)
 						if (datos.msg) toast.error(datos.msg)
-							else toast.success(datos.success)
+						else toast.success(datos.success)
 					} else {
 						console.log(datos)
-						
-							 toast.success(datos.success)
+
+						toast.success(datos.success)
 						const { access_token, user } = datos.datos;
 						setStore({
 							access_token: access_token,
@@ -239,6 +240,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					sessionStorage.removeItem('access_token')
 					sessionStorage.removeItem('current_user')
+					toast.success("Log out Successful")
 				}
 			},
 			handleFormChange: (e) => {
@@ -266,7 +268,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(data)
 						if (data.msg) toast.error(data.msg)
 						else toast.success(data.success)
-						
+
 						getActions().getPipos()
 
 					})
@@ -293,7 +295,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						console.log(data)
 						if (data.msg) toast.error(data.msg)
-							else toast.success(data.success)
+						else toast.success(data.success)
 						getActions().getPipos()
 					})
 					.catch(error => {
@@ -324,7 +326,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (datos.msg) {
 						console.log(datos)
 						if (data.msg) toast.error(data.msg)
-							 toast.success(data.success)
+						toast.success(data.success)
 					} else {
 						console.log(datos)
 						toast.success(data.success)
@@ -345,6 +347,60 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error.message)
 				}
 
+			},
+			sendComment: (e, datos) => {
+				e.preventDefault();
+				
+				const { access_token } = getStore()
+				
+				const url = `http://127.0.0.1:5000/pipo/14/comment`;
+				const options = {
+					method: "POST",
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + access_token
+					},
+					body: JSON.stringify({
+						comment: datos.userComment,
+					})
+				};
+
+				fetch(url, options)
+					.then(response => response.json())
+					.then(datos => {
+						
+						
+						console.log('Comentario Agregado', datos);
+						;
+					})
+					.catch(error => console.error('Error al agregar comentario:', error));
+			},
+
+			sendRating: (rating, id) => {
+				const { access_token } = getStore()
+				const { getPipos } = getActions()
+				const url = `http://127.0.0.1:5000/pipo/${id}/rate`;
+				const options = {
+					method: "POST",
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + access_token
+					},
+					body: JSON.stringify({
+						stars: rating,
+					})
+				};
+
+				fetch(url, options)
+					.then(response => response.json())
+					.then(datos => {
+						
+						
+						console.log('Comentario Agregado', datos);
+						;
+					})
+					.catch(error => console.error('Error al agregar comentario:', error));
+				getPipos()
 			}
 		}
 	};

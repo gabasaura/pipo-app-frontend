@@ -1,82 +1,60 @@
-import { useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useState } from 'react';
-import { Context } from "../store/AppContext";
+import { Container, Navbar, Nav, Offcanvas, OffcanvasHeader, OffcanvasTitle } from 'react-bootstrap';
+import { Link, useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { Context } from '../store/AppContext';
+import { FaRegMap } from "react-icons/fa";
+import pipoLogo from '../assets/pipo-app.svg'
 
 
-
-function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { store, actions } = useContext(Context)
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    const location = useLocation()
+function PipoNavbar() {
+    const { store, actions } = useContext(Context);
+    const location = useLocation();
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Offcanvas navbar large">
-            <div className="container-fluid">
-                <Link className="navbar-brand" to="/">PIPO</Link>
-                <button className="navbar-toggler" type="button" onClick={toggleMenu} aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className={`offcanvas offcanvas-end text-bg-dark ${isMenuOpen ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
-                    <div className="offcanvas-header">
-                        <h5 className="offcanvas-title" id="offcanvasNavbar2Label">PIPO</h5>
-                        <button type="button" className="btn-close btn-close-white" onClick={toggleMenu} aria-label="Close"></button>
-                    </div>
-                    <div className="offcanvas-body">
-                        <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/">HOME</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/about">ABOUT</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/faq">FAQ</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/contact">CONTACT</Link>
-                            </li>
-                            {!!store.access_token ? (
-                                <>
-                                    <li className="nav-item">
-                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/userprofile">USER PROFILE</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/pipoform">ADD PIPO</Link>
-                                    </li>
-                                    {!!store.current_user && store.current_user?.admin && (
-                                        <li className="nav-item">
-                                            <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/piposlist">PIPO LIST</Link>
-                                        </li>
-                                    )}
+        <>
 
-                                    <li className="nav-item">
-                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/" onClick={actions.logout}> LOG OUT</Link>
-                                    </li>
-                                </>
-                            ) : (
-                                <>
-                                    <li className="nav-item">
-                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/login">LOGIN</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/register">REGISTER</Link>
-                                    </li>
-                                </>
-                            )
-                            }
+            <Navbar expand="lg" className="bg-body-tertiary">
+                <Container fluid>
+                    <Navbar.Brand as={Link} to="/"><img className='logo' src={pipoLogo} alt="pipo app" /></Navbar.Brand>
+                    <Navbar.Toggle aria-controls="offcanvasNavbar" />
+                    <Navbar.Offcanvas
+                        id="offcanvasNavbar"
+                        aria-labelledby="offcanvasNavbarLabel"
+                        placement="end"
+                    >
+                        <OffcanvasHeader closeButton>
+                            <Nav.Link as={Link} to="/" className={location.pathname === '/' ? 'active' : ''}><FaRegMap size={35} />
+                            </Nav.Link>
+                        </OffcanvasHeader>
+                        <Offcanvas.Body>
+                            <Nav className="flex m-auto">
 
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
+                                <Nav.Link as={Link} to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Nav.Link>
+                                <Nav.Link as={Link} to="/faq" className={location.pathname === '/faq' ? 'active' : ''}>Faq</Nav.Link>
+                                <Nav.Link as={Link} to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Nav.Link>
+                                {!!store.access_token ? (
+                                    <>
+                                        <Nav.Link as={Link} to="/userprofile" className={location.pathname === '/userprofile' ? 'active' : ''}>User Profile</Nav.Link>
+                                        <Nav.Link as={Link} to="/pipoform" className={location.pathname === '/pipoform' ? 'active' : ''}>Add Pipo</Nav.Link>
+                                        {store.current_user?.admin && (
+                                            <Nav.Link as={Link} to="/piposlist" className={location.pathname === '/piposlist' ? 'active' : ''}>Pipo List</Nav.Link>
+                                        )}
+                                        <Nav.Link onClick={actions.logout}>Log Out</Nav.Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Nav.Link as={Link} to="/login" className={location.pathname === '/login' ? 'active' : ''}>Log In</Nav.Link>
+                                        <Nav.Link as={Link} to="/register" className={location.pathname === '/register' ? 'active' : ''}>Sign Up</Nav.Link>
+                                    </>
+                                )}
+                            </Nav>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                </Container>
+            </Navbar>
+
+        </>
     );
 }
 
-export default Navbar;
+export default PipoNavbar

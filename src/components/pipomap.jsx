@@ -2,14 +2,20 @@ import React, { useState, useEffect, useContext } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import LocationMarker from './locationmarker';
+import L from 'leaflet';
+import marker from '../assets/pipo-marker.svg';
 import { FaToiletPaper, } from "react-icons/fa6";
 import { MdAccessible, MdAttachMoney, MdBabyChangingStation } from "react-icons/md";
-import { IoMdStar } from "react-icons/io";
+import { FaLocationDot } from "react-icons/fa6";
 import '../stylemap.css';
 import Comments from './Comments';
 import LeaveComment from './LeaveComment';
 import StarRating from './Ranking';
 import { Context } from '../store/AppContext';
+import CreateAccount from './CreateAccount';
+import { toast } from "react-toastify";
+import Calificar from './calificar';
+
 
 
 function PipoMap() {
@@ -18,6 +24,13 @@ function PipoMap() {
 	const [userComment, setUserComment] = useState("")
 	const { store, actions } = useContext(Context)
 
+	//custom marker here 
+	const pipoIcon = new L.Icon({
+		iconUrl: marker,
+		iconRetinaUrl: marker,
+		popupAnchor:  [-0, -0],
+		iconSize: [35,45],     
+	});
 
 	const handlePipoClick = (pipo) => {
 		setSelectedPipo(pipo);
@@ -28,18 +41,19 @@ function PipoMap() {
 		setUserComment(e.target.value);
 	}
 
-	const handleSubmitComment = (e) => {
+	const handleSubmitComment = (e, id) => {
 		e.preventDefault();
-        {
+        {	
+			const { access_token }  = store
             const url = `http://127.0.0.1:5000/pipo/${id}/comment`;
             const options = {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+					'Authorization': 'Bearer ' + access_token
                 },
                 body: JSON.stringify({
-                    comment: comment,
-                    user_id: user_id,
+                    comment: userComment
                 })
             };
             
@@ -47,12 +61,15 @@ function PipoMap() {
                 .then(response => response.json())
                 .then(data => {
                     console.log('Comentario enviado con éxito', data);
+					if(data.msg) {toast.error(data.msg)}
+					else toast.success(data.success)
                 })
                 .catch(error => console.error('Error al Comentar:', error));
             
             ; 
         }
-
+		actions.getPipos()
+		setUserComment("")
 	}
 
 
@@ -74,6 +91,7 @@ function PipoMap() {
 			<LocationMarker />
 			{store.pipos.filter(pipo => pipo.active).map(pipo => (
 				<Marker
+					icon={pipoIcon}
 					key={pipo.id}
 					id={pipo.id}
 					position={[pipo.latitude, pipo.longitude]}
@@ -103,7 +121,7 @@ function PipoMap() {
 						<div className="modal-dialog">
 							<div className="modal-content">
 								<div className="modal-header">
-									<h5 className="modal-title" id={`modal-${pipo.id}-label`}>{pipo.pipo_name}</h5>
+									<h5 className="modal-title" id={`modal-${pipo.id}-label`}>{pipo.pipo_name} <FaLocationDot /></h5>
 									<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
 								<div className="modal-body">
@@ -122,7 +140,7 @@ function PipoMap() {
 										pipo.free ?
 										<span data-bs-toggle="tooltip" title="Free" data-bs-placement="top"><MdAttachMoney size={24} style={{ color: "#ccc" }} /> </span> : <span data-bs-toggle="tooltip" title="Paid" data-bs-placement="top"><MdAttachMoney size={24} /> </span>}
 									<p data-bs-toggle="modal" data-bs-target={`#modal-${pipo.id}`}></p>
-
+									
 									<h5>Comments:</h5>
 									{pipo.comments.map(comentario =>
 										<Comments
@@ -131,16 +149,25 @@ function PipoMap() {
 											username={comentario.user}
 											date={comentario.date}
 											comment={comentario.comments}
+											rating={pipo.ratings.find(rating => rating.user_id == comentario.user_id )}
+
 										/>
 									)}
 
 									<br />
-									<LeaveComment id={`comment-${pipo.id}`} text={userComment} onChange={handleCommentChange}/>
+									
+									
 								</div>
-								<div className="modal-footer">
-									<button type="submit" className="btn btn-outline-info" onSubmit={handleSubmitComment}>Submit</button>
-
-									<button type="button" className="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+								<div className="modal-content d-flex justify-content-center">
+									{/* <button type="submit" className="btn btn-outline-info" onSubmit={handleSubmitComment}>Submit</button> */}
+									{store.access_token ?<><Calificar 
+									onRatingChange={(rating) => actions.sendRating(rating, pipo.id)}
+									/>
+									<LeaveComment id={pipo.id} text={userComment} onChange={handleCommentChange} onSubmit={(e) => handleSubmitComment(e, pipo.id)}/> 
+									</>  :
+									<CreateAccount />
+									}
+									{/* <button type="button" className="btn btn-outline-dark" data-bs-dismiss="modal">Close</button> */}
 								</div>
 							</div>
 						</div>

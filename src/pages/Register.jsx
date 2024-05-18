@@ -113,12 +113,12 @@ const Register = () => {
 
     return (
         <div className="py-md-5 align-items-center justify-content-center">
-            <h1 className="mb-3 text-center">Register</h1>
+            <h1 className="mb-3 text-center">Sign Up</h1>
             <form className="rounded-3" onSubmit={actions.handleRegister}>
-                <div className="mt-5 w-50 w-sm-100 card mx-auto p-0">
+                <div className="mt-5 w-75 w-lg-100 card mx-auto p-0">
                     <div className="card-body">
                         {errorMessage && <div className="alert alert-danger m-3" role="alert">{errorMessage}</div>}
-                        <div className="row ">
+                        <div className="row mx-2">
                             <div className="col-12 col-sm-6">
                                 <label htmlFor="userName" className="form-label">User Name</label>
                                 <input type="text" className="form-control" id="username" name="username" value={store.username} onChange={actions.handleFormChange} />
@@ -128,13 +128,13 @@ const Register = () => {
                                 <input type="email" className="form-control" id="email" name="email" value={store.email} onChange={actions.handleFormChange} />
                             </div>
                         </div>
-                        <div className="row ">
-                        <div className="col-12 mb-3">
+                        <div className="row mx-2">
+                        <div className="col-12 mb-3 ">
                                 <label htmlFor="name" className="form-label">Name</label>
                                 <input type="text" className="form-control" id="name" name="name" value={store.name} onChange={actions.handleFormChange} />
                             </div>
                         </div>
-                        <div className="row ">
+                        <div className="row mx-2">
                             <div className="col-12 col-sm-6">
                                 <label htmlFor="password" className="form-label">Password</label>
                                 <input type="password" className="form-control" id="password" name="password" value={store.password} onChange={actions.handleFormChange} />

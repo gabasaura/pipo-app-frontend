@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-vars */
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import emailjs from '@emailjs/browser';
+import { toast } from "react-toastify";
 
 
 const Contact = () => {
@@ -8,11 +8,12 @@ const Contact = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [submitMessage, setSubmitMessage] = useState("");
     const form = useRef();
 
     function handleFormSubmit(event) {
-        event.preventDefault();
-        if (!validateForm()) {
+        event.preventDefault()
+        if (validateForm()) {
             emailjs
                 .sendForm('service_skf16t8', 'template_28gw5tq', form.current, {
                     publicKey: 'xy1w6sUa4TwUqWdWi',
@@ -20,15 +21,17 @@ const Contact = () => {
                 .then(
                     () => {
                         console.log('SUCCESS!');
+                        toast.success('Message sent successfully.')
                     },
                     (error) => {
                         console.log('FAILED...', error.text);
+                        setSubmitMessage('Message sending failed. Please try again later.')
                     },
                 );
-        }
 
-        console.log("Form submitted successfully!");
-        clearForm(); // Clear form fields
+            console.log("Form submitted successfully!");
+            clearForm(); // Clear form fields
+        }
     }
 
 
@@ -50,19 +53,29 @@ const Contact = () => {
     }
 
     function validateForm() {
-        if (!name.trim() || !email.trim() || !message) {
-            setErrorMessage("All fields are required.");
-            return true; // Form is invalid
+        const errors = [];
+
+        if (!name.trim()) {
+            errors.push("Name is required.");
+            toast.error('buuuu')
         }
-        if (!isValidEmail(email)) {
-            setErrorMessage("Please enter a valid email address.");
-            return true; // Form is invalid
+        if (!email.trim()) {
+            errors.push("Email is required.");
+        } else if (!isValidEmail(email)) {
+            errors.push("Please enter a valid email address.");
         }
-        if (message.length > 250) {
-            setErrorMessage("Message must be at most 250 characters.");
-            return true; // Form is invalid
+        if (!message) {
+            errors.push("Message is required.");
+        } else if (message.length > 250) {
+            errors.push("Message must be at most 250 characters.");
         }
-        return false; // Form is valid
+
+        if (errors.length > 0) {
+            setErrorMessage(errors.join(" "));
+            return false; // Form is invalid
+        }
+
+        return true; // Form is valid
     }
 
     function isValidEmail(email) {
@@ -76,7 +89,7 @@ const Contact = () => {
         setName("");
         setEmail("");
         setMessage("");
-        setErrorMessage("");
+        setErrorMessage("")
     }
 
     return (
@@ -86,6 +99,7 @@ const Contact = () => {
                 <div className="mt-5 w-75 card mx-auto p-0">
                     <div className="card-body">
                         {errorMessage && <div className="alert alert-danger m-3" role="alert">{errorMessage}</div>}
+                        {submitMessage && <div className={`alert ${submitMessage.includes('failed') ? 'alert-danger' : 'alert-success'} m-3`} role="alert">{submitMessage}</div>}
                         <div className="row mx-2">
                             <div className="col-12 mb-3">
                                 <label htmlFor="name" className="form-label">Name</label>
@@ -104,8 +118,8 @@ const Contact = () => {
                     </div>
                     <div className="card-footer d-flex justify-content-end">
                         <div className="ms-auto mx-3">
-                            <button type="button" className="btn btn-secondary ms-auto" onClick={clearForm}>Cancel</button>
-                            <button type="submit" className="btn btn-primary">Send</button>
+                            <button type="submit" className="btn btn-outline-info ms-2">Send</button>
+                            <button type="button" className="btn btn-outline-dark ms-2" onClick={clearForm}>Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -114,4 +128,4 @@ const Contact = () => {
     )
 }
 
-export default Contact;
+export default Contact
