@@ -39,7 +39,7 @@ function PipoNavbar() {
                                         {store.current_user?.admin && (
                                             <Nav.Link as={Link} to="/piposlist" className={location.pathname === '/piposlist' ? 'active' : ''}>Pipo List</Nav.Link>
                                         )}
-                                        <Nav.Link onClick={actions.logout}>Sign Out</Nav.Link>
+                                        <Nav.Link onClick={actions.logout}>Log Out</Nav.Link>
                                     </>
                                 ) : (
                                     <>
