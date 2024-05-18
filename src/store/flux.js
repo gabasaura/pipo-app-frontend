@@ -352,6 +352,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				e.preventDefault();
 				
 				const { access_token } = getStore()
+				
 				const url = `http://127.0.0.1:5000/pipo/14/comment`;
 				const options = {
 					method: "POST",
@@ -373,6 +374,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 						;
 					})
 					.catch(error => console.error('Error al agregar comentario:', error));
+			},
+
+			sendRating: (rating, id) => {
+				const { access_token } = getStore()
+				const { getPipos } = getActions()
+				const url = `http://127.0.0.1:5000/pipo/${id}/rate`;
+				const options = {
+					method: "POST",
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + access_token
+					},
+					body: JSON.stringify({
+						stars: rating,
+					})
+				};
+
+				fetch(url, options)
+					.then(response => response.json())
+					.then(datos => {
+						
+						
+						console.log('Comentario Agregado', datos);
+						;
+					})
+					.catch(error => console.error('Error al agregar comentario:', error));
+				getPipos()
 			}
 		}
 	};

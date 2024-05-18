@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import LocationMarker from './locationmarker';
 import { FaToiletPaper, } from "react-icons/fa6";
 import { MdAccessible, MdAttachMoney, MdBabyChangingStation } from "react-icons/md";
-import { IoMdStar } from "react-icons/io";
+import { FaLocationDot } from "react-icons/fa6";
 import '../stylemap.css';
 import Comments from './Comments';
 import LeaveComment from './LeaveComment';
@@ -110,7 +110,7 @@ function PipoMap() {
 						<div className="modal-dialog">
 							<div className="modal-content">
 								<div className="modal-header">
-									<h5 className="modal-title" id={`modal-${pipo.id}-label`}>{pipo.pipo_name}</h5>
+									<h5 className="modal-title" id={`modal-${pipo.id}-label`}>{pipo.pipo_name} <FaLocationDot /></h5>
 									<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
 								<div className="modal-body">
@@ -129,7 +129,7 @@ function PipoMap() {
 										pipo.free ?
 										<span data-bs-toggle="tooltip" title="Free" data-bs-placement="top"><MdAttachMoney size={24} style={{ color: "#ccc" }} /> </span> : <span data-bs-toggle="tooltip" title="Paid" data-bs-placement="top"><MdAttachMoney size={24} /> </span>}
 									<p data-bs-toggle="modal" data-bs-target={`#modal-${pipo.id}`}></p>
-									<Calificar />
+									
 									<h5>Comments:</h5>
 									{pipo.comments.map(comentario =>
 										<Comments
@@ -138,6 +138,8 @@ function PipoMap() {
 											username={comentario.user}
 											date={comentario.date}
 											comment={comentario.comments}
+											rating={pipo.ratings.find(rating => rating.user_id == comentario.user_id )}
+
 										/>
 									)}
 
@@ -147,7 +149,11 @@ function PipoMap() {
 								</div>
 								<div className="modal-content d-flex justify-content-center">
 									{/* <button type="submit" className="btn btn-outline-info" onSubmit={handleSubmitComment}>Submit</button> */}
-									{store.access_token ? <LeaveComment id={pipo.id} text={userComment} onChange={handleCommentChange} onSubmit={(e) => handleSubmitComment(e, pipo.id)}/>  :
+									{store.access_token ?<><Calificar 
+									onRatingChange={(rating) => actions.sendRating(rating, pipo.id)}
+									/>
+									<LeaveComment id={pipo.id} text={userComment} onChange={handleCommentChange} onSubmit={(e) => handleSubmitComment(e, pipo.id)}/> 
+									</>  :
 									<CreateAccount />
 									}
 									{/* <button type="button" className="btn btn-outline-dark" data-bs-dismiss="modal">Close</button> */}
