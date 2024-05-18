@@ -6,15 +6,60 @@
     font-family: "Work Sans", sans-serif;
 }
 
+body {
+    height: 100% !important;
+
+}
+
+.navbar {
+    --bs-navbar-toggler-icon-bg: url(./assets/toggler-icon.svg);
+}
+.navbar-brand{
+    margin-left: 0.6rem;
+
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    width: 45px;
+    height: 45px;
+    background-size: 45px 45px;
+}
+
 .nav-link.active {
     font-weight: 600;
 }
 
 .nav-link {
-    padding-top: .7em;
+    /*padding-top: .4em;*/
 
 }
 
 .offcanvas {
     --bs-offcanvas-width: auto;
+}
+
+.offcanvas-header .btn-close {
+    margin-left: 3em;
+}
+
+.btn-close {
+    --bs-btn-close-opacity: 1;
+}
+
+.logo {
+    height: 45px;
+}
+
+input.form-control {
+    --bs-border-width: 1px;
+    --bs-border-color: black;
+}
+
+.img-logo {
+    width: 45px;
+    height: 45px;
 }

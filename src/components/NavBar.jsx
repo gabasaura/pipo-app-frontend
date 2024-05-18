@@ -2,7 +2,9 @@ import { Container, Navbar, Nav, Offcanvas, OffcanvasHeader, OffcanvasTitle } fr
 import { Link, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import { Context } from '../store/AppContext';
-import '../styles/navbar.css';
+import { FaRegMap } from "react-icons/fa";
+import pipoLogo from '../assets/pipo-app.svg'
+
 
 function PipoNavbar() {
     const { store, actions } = useContext(Context);
@@ -13,7 +15,7 @@ function PipoNavbar() {
 
             <Navbar expand="lg" className="bg-body-tertiary">
                 <Container fluid>
-                    <Navbar.Brand as={Link} to="/">PIPO</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/"><img className='logo' src={pipoLogo} alt="pipo app" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
                         id="offcanvasNavbar"
@@ -21,11 +23,12 @@ function PipoNavbar() {
                         placement="end"
                     >
                         <OffcanvasHeader closeButton>
-                        <Nav.Link as={Link} to="/" className={location.pathname === '/' ? 'active' : ''}>BACK TO MAP</Nav.Link>
+                            <Nav.Link as={Link} to="/" className={location.pathname === '/' ? 'active' : ''}><FaRegMap size={35} />
+                            </Nav.Link>
                         </OffcanvasHeader>
                         <Offcanvas.Body>
                             <Nav className="flex m-auto">
-                                
+
                                 <Nav.Link as={Link} to="/about" className={location.pathname === '/about' ? 'active' : ''}>ABOUT</Nav.Link>
                                 <Nav.Link as={Link} to="/faq" className={location.pathname === '/faq' ? 'active' : ''}>FAQ</Nav.Link>
                                 <Nav.Link as={Link} to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>CONTACT</Nav.Link>
@@ -36,12 +39,12 @@ function PipoNavbar() {
                                         {store.current_user?.admin && (
                                             <Nav.Link as={Link} to="/piposlist" className={location.pathname === '/piposlist' ? 'active' : ''}>PIPO LIST</Nav.Link>
                                         )}
-                                        <Nav.Link onClick={actions.logout}>LOG OUT</Nav.Link>
+                                        <Nav.Link onClick={actions.logout}>SIGN OUT</Nav.Link>
                                     </>
                                 ) : (
                                     <>
                                         <Nav.Link as={Link} to="/login" className={location.pathname === '/login' ? 'active' : ''}>LOGIN</Nav.Link>
-                                        <Nav.Link as={Link} to="/register" className={location.pathname === '/register' ? 'active' : ''}>REGISTER</Nav.Link>
+                                        <Nav.Link as={Link} to="/register" className={location.pathname === '/register' ? 'active' : ''}>SIGN UP</Nav.Link>
                                     </>
                                 )}
                             </Nav>
