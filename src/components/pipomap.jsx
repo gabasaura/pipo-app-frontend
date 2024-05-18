@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import LocationMarker from './locationmarker';
+import L from 'leaflet';
+import marker from '../assets/pipo-marker.svg';
 import { FaToiletPaper, } from "react-icons/fa6";
 import { MdAccessible, MdAttachMoney, MdBabyChangingStation } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
@@ -22,6 +24,13 @@ function PipoMap() {
 	const [userComment, setUserComment] = useState("")
 	const { store, actions } = useContext(Context)
 
+	//custom marker here 
+	const pipoIcon = new L.Icon({
+		iconUrl: marker,
+		iconRetinaUrl: marker,
+		popupAnchor:  [-0, -0],
+		iconSize: [35,45],     
+	});
 
 	const handlePipoClick = (pipo) => {
 		setSelectedPipo(pipo);
@@ -81,6 +90,7 @@ function PipoMap() {
 			<LocationMarker />
 			{store.pipos.filter(pipo => pipo.active).map(pipo => (
 				<Marker
+					icon={pipoIcon}
 					key={pipo.id}
 					id={pipo.id}
 					position={[pipo.latitude, pipo.longitude]}

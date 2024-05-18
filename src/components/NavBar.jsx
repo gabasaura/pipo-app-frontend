@@ -29,21 +29,21 @@ function PipoNavbar() {
                         <Offcanvas.Body>
                             <Nav className="flex m-auto">
 
-                                <Nav.Link as={Link} to="/about" className={location.pathname === '/about' ? 'active' : ''}>ABOUT</Nav.Link>
-                                <Nav.Link as={Link} to="/faq" className={location.pathname === '/faq' ? 'active' : ''}>FAQ</Nav.Link>
+                                <Nav.Link as={Link} to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Nav.Link>
+                                <Nav.Link as={Link} to="/faq" className={location.pathname === '/faq' ? 'active' : ''}>Faq</Nav.Link>
                                 <Nav.Link as={Link} to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Nav.Link>
                                 {!!store.access_token ? (
                                     <>
                                         <Nav.Link as={Link} to="/userprofile" className={location.pathname === '/userprofile' ? 'active' : ''}>User Profile</Nav.Link>
-                                        <Nav.Link as={Link} to="/pipoform" className={location.pathname === '/pipoform' ? 'active' : ''}>Add PIPO</Nav.Link>
+                                        <Nav.Link as={Link} to="/pipoform" className={location.pathname === '/pipoform' ? 'active' : ''}>Add Pipo</Nav.Link>
                                         {store.current_user?.admin && (
-                                            <Nav.Link as={Link} to="/piposlist" className={location.pathname === '/piposlist' ? 'active' : ''}>PIPO List</Nav.Link>
+                                            <Nav.Link as={Link} to="/piposlist" className={location.pathname === '/piposlist' ? 'active' : ''}>Pipo List</Nav.Link>
                                         )}
-                                        <Nav.Link onClick={actions.logout}>Log Out</Nav.Link>
+                                        <Nav.Link onClick={actions.logout}>Sign Out</Nav.Link>
                                     </>
                                 ) : (
                                     <>
-                                        <Nav.Link as={Link} to="/login" className={location.pathname === '/login' ? 'active' : ''}>Log in</Nav.Link>
+                                        <Nav.Link as={Link} to="/login" className={location.pathname === '/login' ? 'active' : ''}>Log In</Nav.Link>
                                         <Nav.Link as={Link} to="/register" className={location.pathname === '/register' ? 'active' : ''}>Sign Up</Nav.Link>
                                     </>
                                 )}

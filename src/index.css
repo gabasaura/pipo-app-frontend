@@ -7,7 +7,8 @@
 }
 
 body {
-    height: 100% !important;
+    height: 100vh !important;
+    
 
 }
 
@@ -31,11 +32,6 @@ body {
 
 .nav-link.active {
     font-weight: 600;
-}
-
-.nav-link {
-    /*padding-top: .4em;*/
-
 }
 
 .offcanvas {
