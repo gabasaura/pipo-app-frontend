@@ -61,7 +61,8 @@ function PipoMap() {
                 .then(response => response.json())
                 .then(data => {
                     console.log('Comentario enviado con éxito', data);
-					toast.success('Comment Successful')
+					if(data.msg) {toast.error(data.msg)}
+					else toast.success(data.success)
                 })
                 .catch(error => console.error('Error al Comentar:', error));
             
