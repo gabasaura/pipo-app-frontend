@@ -26,7 +26,7 @@ const Login = () => {
 
     return (
         <div className="d-flex flex-column min-vh-100">
-        <div className="flex-grow-1 flex-column py-5 align-items-center justify-content-center">
+        <div className="flex-column flex-grow-1 py-5 align-items-center justify-content-center">
             <h1 className="text-center">Log In</h1>
             <form onSubmit={handleLogin} className="flex-fill">
                 <div className="mt-5 w-75 card mx-auto p-0 border border-2 border-black">
