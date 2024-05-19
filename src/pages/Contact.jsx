@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import emailjs from '@emailjs/browser';
 import { toast } from "react-toastify";
+import Footer from "../components/footer";
 
 
 const Contact = () => {
@@ -93,37 +94,41 @@ const Contact = () => {
     }
 
     return (
-        <div className="py-md-5 align-items-center justify-content-center">
-            <h1 className=" text-center">Contact Us</h1>
-            <form ref={form} className="rounded-3" onSubmit={handleFormSubmit}>
-                <div className="mt-5 w-75 card mx-auto p-0">
-                    <div className="card-body">
-                        {errorMessage && <div className="alert alert-danger m-3" role="alert">{errorMessage}</div>}
-                        {submitMessage && <div className={`alert ${submitMessage.includes('failed') ? 'alert-danger' : 'alert-success'} m-3`} role="alert">{submitMessage}</div>}
-                        <div className="row mx-2">
-                            <div className="col-12 mb-3">
-                                <label htmlFor="name" className="form-label">Name</label>
-                                <input name="user_name" type="text" className="form-control" id="name" value={name} onChange={handleInputChange} />
+        <div className="d-flex flex-column min-vh-100">
+            <div className="flex-column flex-grow-1 py-5 align-items-center justify-content-center">
+                <h1 class="mb-3 text-center">We'd Love to Hear From You!</h1>
+                <form ref={form} className="flex-fill" onSubmit={handleFormSubmit}>
+                    <div className="mt-5 w-75 card mx-auto p-0 border border-2 border-black">
+                        <div className="card-body">
+                        <h5 class="text-center m-5">Got a question, feedback, or just want to say hi? Drop us a message and we'll get back to you as soon as possible.</h5>
+                            {errorMessage && <div className="alert alert-danger m-3" role="alert">{errorMessage}</div>}
+                            {submitMessage && <div className={`alert ${submitMessage.includes('failed') ? 'alert-danger' : 'alert-success'} m-3`} role="alert">{submitMessage}</div>}
+                            <div className="row mx-2">
+                                <div className="col-12 mb-3">
+                                    <label htmlFor="name" className="form-label">Name</label>
+                                    <input name="user_name" type="text" className="form-control" id="name" value={name} onChange={handleInputChange} />
+                                </div>
+                                <div className="col-12 mb-3">
+                                    <label htmlFor="email" className="form-label">Email</label>
+                                    <input name="user_email" type="email" className="form-control" id="email" value={email} onChange={handleInputChange} />
+                                </div>
+                                <div className="col-12 mb-3">
+                                    <label htmlFor="message" className="form-label">Message</label>
+                                    <textarea name="message" className="form-control border-black" id="message" rows="5" maxLength="250" value={message} onChange={handleInputChange} />
+                                    <small className="text-secondary">{250 - message.length} characters remaining</small>
+                                </div>
                             </div>
-                            <div className="col-12 mb-3">
-                                <label htmlFor="email" className="form-label">Email</label>
-                                <input name="user_email" type="email" className="form-control" id="email" value={email} onChange={handleInputChange} />
-                            </div>
-                            <div className="col-12 mb-3">
-                                <label htmlFor="message" className="form-label">Message</label>
-                                <textarea name="message" className="form-control" id="message" rows="5" maxLength="250" value={message} onChange={handleInputChange} />
-                                <small className="text-secondary">{250 - message.length} characters remaining</small>
+                        </div>
+                        <div className="card-footer border-top border-2 border-black d-flex justify-content-between">
+                            <div className="ms-auto mx-3">
+                                <button type="submit" className="btn btn-outline-info ms-2">Send</button>
+                                <button type="button" className="btn btn-outline-dark ms-2" onClick={clearForm}>Cancel</button>
                             </div>
                         </div>
                     </div>
-                    <div className="card-footer d-flex justify-content-end">
-                        <div className="ms-auto mx-3">
-                            <button type="submit" className="btn btn-outline-info ms-2">Send</button>
-                            <button type="button" className="btn btn-outline-dark ms-2" onClick={clearForm}>Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
+            < Footer />
         </div>
     )
 }

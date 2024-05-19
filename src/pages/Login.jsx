@@ -27,7 +27,7 @@ const Login = () => {
     return (
         <div className="d-flex flex-column min-vh-100">
         <div className="flex-column flex-grow-1 py-5 align-items-center justify-content-center">
-            <h1 className="text-center">Log In</h1>
+        <h1 class="mb-3 text-center">Welcome Back! We've Missed You</h1>
             <form onSubmit={handleLogin} className="flex-fill">
                 <div className="mt-5 w-75 card mx-auto p-0 border border-2 border-black">
                     <div className="card-body">
@@ -47,7 +47,7 @@ const Login = () => {
                     </div>
                     <div className="card-footer border-top border-2 border-black d-flex justify-content-between">
                         
-                        <Link className={"nav-link " + (location.pathname === "/" ? "active" : "")} to="/recoverpassword">Forgot your password?</Link>
+                        <Link className={"p-top nav-link " + (location.pathname === "/" ? "active" : "")} to="/recoverpassword">Forgot your password?</Link>
                             <button type="submit" className="btn btn-outline-info">Log In</button>        
                     </div>
                 </div>

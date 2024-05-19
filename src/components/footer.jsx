@@ -3,13 +3,16 @@ import '../styles/footer.css'
 
 
 const Footer = () => {
-  return (
-    <footer className="footer mt-auto bg-body-tertiary footer-expand-lg footer-light">
-      <div className="d-flex justify-content-center align-items-center">
-        <img src={pipoLogoFooter} alt="Logo" className='img-logo m-3' />
-      </div>
-    </footer>
-  )
+    return (
+        <footer className="footer mt-auto bg-body-tertiary footer-expand-lg footer-light">
+            <div className="d-flex justify-content-center align-items-center">
+                <a class="footer-brand" href="/">
+                    <img src={pipoLogoFooter} alt="Logo" className='img-logo m-3' />
+                </a>
+
+            </div>
+        </footer>
+    )
 }
 
 export default Footer

@@ -8,14 +8,15 @@
 
 body {
     height: 100vh !important;
-    
+
 
 }
 
 .navbar {
     --bs-navbar-toggler-icon-bg: url(./assets/toggler-icon.svg);
 }
-.navbar-brand{
+
+.navbar-brand {
     margin-left: 0.6rem;
 
 }
@@ -34,12 +35,16 @@ body {
     font-weight: 600;
 }
 
+.p-top {
+    padding-top: .4em;
+}
+
 .offcanvas {
     --bs-offcanvas-width: auto;
 }
 
 .offcanvas-header .btn-close {
-    margin-left: 3em;
+    margin-left: 4em;
 }
 
 .btn-close {
