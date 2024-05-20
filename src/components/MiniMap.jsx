@@ -2,9 +2,9 @@ import React, { useEffect, useState, } from 'react';
 
 const MiniMap = ({location, setLocation}) => {
     
-useEffect(()=> {
-    getLocation()
-}, [])
+// useEffect(()=> {
+//     getLocation()
+// }, [])
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -41,7 +41,7 @@ useEffect(()=> {
 
     return (
         <div>
-            <button className='btn btn-outline-info rounded mt-3 mb-3'  onClick={getLocation}>Click to get location</button>
+            <div className='btn btn-outline-info rounded mt-3 mb-3'  onClick={getLocation}>Click to get location</div>
             {location && (
                 <div>
                     
