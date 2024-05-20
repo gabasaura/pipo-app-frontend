@@ -77,7 +77,7 @@ const UserProfile = () => {
                                 <h6>Email: {store?.current_user?.email}</h6>
                                 <h6>Name: {store?.current_user?.email}</h6>
                             </div>
-                            <hr />
+                            <hr className='border-0 border-top border-black border-1 opacity-100' />
                             <form className='my-4' >
                                 <div className="my-3 ">
                                     <h4>Change Password</h4>

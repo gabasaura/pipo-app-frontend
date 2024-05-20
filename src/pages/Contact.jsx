@@ -96,11 +96,11 @@ const Contact = () => {
     return (
         <div className="d-flex flex-column min-vh-100">
             <div className="flex-column flex-grow-1 w-75 mx-auto py-5 align-items-center justify-content-center">
-                <h1 class="mb-3 text-center">We'd Love to Hear From You!</h1>
+                <h1 className="mb-3 text-center">We'd Love to Hear From You!</h1>
                 <form ref={form} className="flex-fill" onSubmit={handleFormSubmit}>
                     <div className="mt-5 card p-0 border border-2 border-black">
                         <div className="card-body">
-                        <h5 class="text-center m-5">Got a question, feedback, or just want to say hi? Drop us a message and we'll get back to you as soon as possible.</h5>
+                        <h5 className="text-center m-5">Got a question, feedback, or just want to say hi? Drop us a message and we'll get back to you as soon as possible.</h5>
                             {errorMessage && <div className="alert alert-danger m-3" role="alert">{errorMessage}</div>}
                             {submitMessage && <div className={`alert ${submitMessage.includes('failed') ? 'alert-danger' : 'alert-success'} m-3`} role="alert">{submitMessage}</div>}
                             <div className="row mx-2">

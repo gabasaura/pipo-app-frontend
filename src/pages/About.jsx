@@ -9,7 +9,7 @@ const About = () => {
                 <h1 className="text-center">Hey! We Are PIPO</h1>
                 <h3 className="mb-5 text-center">♡＼(￣▽￣)／♡</h3>
                 <h3 className="">About This Project</h3>
-                <p class="mt-4">
+                <p className="mt-4">
     This web app was created by two Chilean developers as a project for 4Geeks Academy. Our goal is to provide an easy-to-use tool that helps people find nearby public restrooms.
     <br /><br />
     We aim to make it simple for users to locate restrooms, enhancing hygiene and sanitation in public spaces. We will keep improving our user-friendly interface to allow for fast searches and viewing detailed information.
