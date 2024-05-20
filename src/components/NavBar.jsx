@@ -1,14 +1,23 @@
 import { Container, Navbar, Nav, Offcanvas, OffcanvasHeader, OffcanvasTitle } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Context } from '../store/AppContext';
 import { FaRegMap } from "react-icons/fa";
 import pipoLogo from '../assets/pipo-app.svg'
+import { useNavigate} from "react-router-dom";
 
 
 function PipoNavbar() {
     const { store, actions } = useContext(Context);
     const location = useLocation();
+
+
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (store.access_token !== null) navigate("/")
+    }, [store.access_token])
+    
+
 
     return (
         <>
@@ -39,7 +48,7 @@ function PipoNavbar() {
                                         {store.current_user?.admin && (
                                             <Nav.Link as={Link} to="/piposlist" className={location.pathname === '/piposlist' ? 'active' : ''}>Pipo List</Nav.Link>
                                         )}
-                                        <Nav.Link onClick={actions.logout}>Log Out</Nav.Link>
+                                        <Nav.Link as={Link} to="/" className={"nav-link " + (location.pathname === "/" ? "active" : "")} onClick={actions.logout}>Log Out</Nav.Link>
                                     </>
                                 ) : (
                                     <>

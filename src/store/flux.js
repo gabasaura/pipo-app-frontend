@@ -1,5 +1,7 @@
 import { toast } from "react-toastify";
 
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -241,6 +243,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					sessionStorage.removeItem('access_token')
 					sessionStorage.removeItem('current_user')
 					toast.success("Log out Successful")
+					
 				}
 			},
 			handleFormChange: (e) => {
