@@ -49,12 +49,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 			validateForm: () => {
-				const { email, password, repeatPassword } = getStore();
+				const { username, email, password, repeatPassword } = getStore();
+				if (!username.trim()) {
+					setStore({ error: "Please enter a valid username." });
+					toast.error("Please enter a valid username.")
+					return true; 
+				}
 				if (!email.trim() || !getActions().isValidEmail(email)) {
 					setStore({ error: "Please enter a valid email address." });
 					toast.error("Please enter a valid email address.")
 					return true; // Form is invalid
 				}
+				
 				if (!password.trim() || password.length < 6) {
 					setStore({ error: "Password must be at least 6 characters." });
 					toast.error("Password must be at least 6 characters.")
