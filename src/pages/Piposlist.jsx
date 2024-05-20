@@ -27,7 +27,10 @@ const PiposList = () => {
                     <h1 className="mb-1 text-center">Welcome Admin!</h1>
                     <h3 className="mb-3 text-center">Check the available pipos</h3>
                     <table className="table table-bordered border-info border-1 my-4 ">
+                        <tbody>
                         {store.pipos.filter(pipo => !pipo.active).map((pipo) => (
+                            <tr key={pipo.id}>
+                                <td>
                             <PipoCard
                                 key={pipo.id}
                                 id={pipo.id}
@@ -36,9 +39,12 @@ const PiposList = () => {
                                 addPipo={actions.activatePipo}
                                 deletePipo={actions.deletePipo}
                             />
+                            </td>
+                            </tr>
                         ))}
-                        {store.pipos.filter(pipo => !pipo.active).length === 0 && <NoPipoList />}
+                        </tbody>
                     </table>
+                        {store.pipos.filter(pipo => !pipo.active).length === 0 && <NoPipoList />}
                 </div>
                 < Footer />
             </div>

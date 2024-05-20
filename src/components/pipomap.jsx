@@ -143,9 +143,10 @@ function PipoMap() {
 									<hr className="border-top border-info border-2 opacity-100 pb-2" />
 
 									<h5>Community Reviews</h5>
-									<table className="table table-bordered border-primary">
-
+									<table className="table table-bordered border-infos">
+									<tbody>
 									{pipo.comments.map(comentario =>
+										
 										<Comments
 											key={comentario.id}
 											id={comentario.id}
@@ -155,8 +156,9 @@ function PipoMap() {
 											rating={pipo.ratings.find(rating => rating.user_id == comentario.user_id)}
 
 										/>
+								
 									)}
-									
+									</tbody>
 									</table>
 
 									
