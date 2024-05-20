@@ -70,6 +70,12 @@ input.form-control {
 .star-padding {
     margin: 0 2px; /* Adjust the padding as needed */
 }
+.img-avatar{
+    width: 190px;
+    height: 190px;
+    margin: 0 auto;
+
+}
 
 @media (max-width: 991.98px) { 
 .w-75 {
