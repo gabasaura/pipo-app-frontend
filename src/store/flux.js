@@ -150,7 +150,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						sessionStorage.setItem('access_token', access_token);
 						sessionStorage.setItem('current_user', JSON.stringify(user));
-						toast.success("Log in sucessfull")
+						toast.success("Log In Sucessful")
 					}
 
 				} catch (error) {
@@ -218,14 +218,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 							password: '',
 						});
 
-						console.log('Password reset successfully!');
+						console.log('Password Reseted Successfully!');
 					} else {
-						console.error('Password reset failed:', data.error || 'Unknown error');
+						console.error('Password Reset Failed:', data.error || 'Unknown error');
 						//  error message to the user
 					}
 
 				} catch (error) {
-					console.error('Password reset failed:', error.message);
+					console.error('Password Reset Failed:', error.message);
 					// Display error message to the user
 				}
 			},
