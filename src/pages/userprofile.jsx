@@ -75,7 +75,6 @@ const UserProfile = () => {
                             <p>Here is your account information:</p>
                                 <h6>Username: {store?.current_user?.username}</h6>
                                 <h6>Email: {store?.current_user?.email}</h6>
-                                <h6>Name: {store?.current_user?.email}</h6>
                             </div>
                             <hr className='border-0 border-top border-black border-1 opacity-100' />
                             <form className='my-4' >
