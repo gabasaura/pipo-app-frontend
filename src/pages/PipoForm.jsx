@@ -68,14 +68,21 @@ const PipoForm = () => {
                 if (data.msg) toast.error(data.msg)
                 else toast.success(data.success)
 
-
+                if (toiletName.trim() !== "" && toiletAddress.trim() !== "" ) {
+                    setToiletName("");
+                    setToiletAddress("");
+                    setLocation({ latitude: "", longitude: "" });
+                    setToiletPaper(false);
+                    setIsDisabledFriendly(false);
+                    setIsFree(false);
+                    setBabyChanger(false);
+                    
+                }
             })
             .catch(error => console.error('Error al registrar:', error));
-
-        setToiletName("")
-        setToiletAddress("")
-        setLongitude("")
-        setLongitude("")
+        
+          
+     
     };
 
     function getLocation() {
@@ -113,6 +120,7 @@ const PipoForm = () => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-8">
+                    
                     <h3 className="text-center my-4">Add a New PIPO</h3>
                     <form onSubmit={handleAddToilet}>
                         <div className="mb-3">
@@ -172,9 +180,17 @@ const PipoForm = () => {
                             </li>
                         ))}
                     </ul>
+                    <p>1. If you wanna add a new location, please fill this form ir order to Queue your request. </p>
+                    <p>2. If everything is okay, after you send the location, you will receive a notification with the message "Your PIPO Is Waiting For a Review".</p>
+                    <p>3. Once an administrator approves your request, you will be able to see your PIPO in the Map.</p>
+
+                    
+                    
 
                 </div>
+                <div className="col-md-8"><h3 className='mt-5 '>Thanks for cooperating with us! ＼( ⁀▽⁀ )／</h3></div>
             </div>
+
         </div>
     );
 }

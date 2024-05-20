@@ -58,7 +58,7 @@ const Contact = () => {
 
         if (!name.trim()) {
             errors.push("Name is required.");
-            toast.error('buuuu')
+           
         }
         if (!email.trim()) {
             errors.push("Email is required.");
