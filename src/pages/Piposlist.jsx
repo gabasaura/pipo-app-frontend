@@ -30,7 +30,7 @@ const PiposList = () => {
                         <tbody>
                         {store.pipos.filter(pipo => !pipo.active).map((pipo) => (
                             <tr key={pipo.id}>
-                                <td>
+                                <td className="p-0 m-0">
                             <PipoCard
                                 key={pipo.id}
                                 id={pipo.id}

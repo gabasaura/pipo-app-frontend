@@ -11,7 +11,10 @@ body {
 
 
 }
-h6{font-size: .9rem;}
+
+h6 {
+    font-size: .9rem;
+}
 
 
 
@@ -67,18 +70,28 @@ input.form-control {
     width: 45px;
     height: 45px;
 }
+
 .star-padding {
-    margin: 0 2px; /* Adjust the padding as needed */
+    margin: 0 2px;
+    /* Adjust the padding as needed */
 }
-.img-avatar{
+
+.img-avatar {
     width: 220px;
     height: 220px;
     margin: 0 auto;
 
 }
 
-@media (max-width: 991.98px) { 
-.w-75 {
-    width: 90% !important;
+.icono-pipocard {
+    width: 50px;
+    padding: 5px 10px;
+    font-size: 16px;
+    height: 50px;
 }
+
+@media (max-width: 991.98px) {
+    .w-75 {
+        width: 90% !important;
+    }
 }
