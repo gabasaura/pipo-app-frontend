@@ -48,7 +48,7 @@ export const RecoverPassword = () => {
     return (
         <>
             <div className="d-flex flex-column min-vh-100">
-                <div className="flex-column flex-grow-1 mx-auto p-5 align-items-center justify-content-center">
+                <div className="flex-column flex-grow-1 w-75 mx-auto p-5 align-items-center justify-content-center">
                     <h1 className="text-center">Oops! Don't worry!</h1>
                     <h3 className="text-center my-4">Looks like you forgot your password, but we've got you covered.</h3>
                     
