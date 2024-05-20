@@ -143,7 +143,8 @@ function PipoMap() {
 									<hr className="border-top border-info border-2 opacity-100 pb-2" />
 
 									<h5>Community Reviews</h5>
-									<table class="table table-bordered border-primary">
+									<table className="table table-bordered border-info">
+									
 
 									{pipo.comments.map(comentario =>
 										<Comments
@@ -156,6 +157,7 @@ function PipoMap() {
 
 										/>
 									)}
+									
 									</table>
 
 									
