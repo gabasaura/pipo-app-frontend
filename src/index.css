@@ -11,6 +11,9 @@ body {
 
 
 }
+h6{font-size: .9rem;}
+
+
 
 .navbar {
     --bs-navbar-toggler-icon-bg: url(./assets/toggler-icon.svg);
@@ -63,4 +66,13 @@ input.form-control {
 .img-logo {
     width: 45px;
     height: 45px;
+}
+.star-padding {
+    margin: 0 2px; /* Adjust the padding as needed */
+}
+
+@media (max-width: 991.98px) { 
+.w-75 {
+    width: 90% !important;
+}
 }

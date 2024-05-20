@@ -48,7 +48,7 @@ const ResetPassword = () => {
     return (
         <>
             <div className="d-flex flex-column min-vh-100">
-                <div className="flex-column flex-grow-1 mx-auto p-5 align-items-center justify-content-center">
+                <div className="flex-column flex-grow-1 w-75 mx-auto p-5 align-items-center justify-content-center">
                 <h1 className="mb-3 text-center">Alright, let's reset your password!</h1>
                     <h3 className="text-center my-4">Now, using your email and the <span className="text-info">magic code</span>, you can create a new one.</h3>
 

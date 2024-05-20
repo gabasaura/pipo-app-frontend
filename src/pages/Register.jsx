@@ -114,17 +114,17 @@ const Register = () => {
 
     return (
         <div className="d-flex flex-column min-vh-100">
-            <div className="flex-column flex-grow-1 py-5 align-items-center justify-content-center">
+            <div className="flex-column flex-grow-1 w-75 mx-auto py-5 align-items-center justify-content-center">
                 <h1 className="mb-3 text-center">Welcome to our community!</h1>
-                <h3 className="text-center">Why Join Pipo? 🌟 </h3>
-                <p className="text-center w-75 mx-auto mt-4">We're thrilled to have you join us on our mission to elevate outdoor adventures. Together, let's transform the way we explore the city, making it even more enjoyable and accessible for all.</p>
+                <h3 className="text-center"> Why Join Pipo? (o˘◡˘o) </h3>
+                <p className="text-center mt-4">We're thrilled to have you join us on our mission to elevate outdoor adventures. Together, let's transform the way we explore the city, making it even more enjoyable and accessible for all.</p>
 
                 <form className="flex-fill" onSubmit={actions.handleRegister}>
-                    <div className="mt-5 w-75 card mx-auto p-0 border border-2 border-black">
+                    <div className="card mt-5 p-0 border border-2 border-black">
 
                         <div className="card-body">
                             {errorMessage && <div className="alert alert-danger m-3" role="alert">{errorMessage}</div>}
-                            <div className="row mx-2">
+                            <div className="row m-2">
                                 <div className="col-12 col-sm-6">
                                     <label htmlFor="userName" className="form-label">User Name</label>
                                     <input type="text" className="form-control" id="username" name="username" value={store.username} onChange={actions.handleFormChange} />
@@ -134,13 +134,13 @@ const Register = () => {
                                     <input type="email" className="form-control" id="email" name="email" value={store.email} onChange={actions.handleFormChange} />
                                 </div>
                             </div>
-                            <div className="row mx-2">
-                                <div className="col-12 mb-3 ">
+                            <div className="row m-2">
+                                <div className="col-12">
                                     <label htmlFor="name" className="form-label">Name</label>
                                     <input type="text" className="form-control" id="name" name="name" value={store.name} onChange={actions.handleFormChange} />
                                 </div>
                             </div>
-                            <div className="row mx-2">
+                            <div className="row m-2">
                                 <div className="col-12 col-sm-6">
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="password" name="password" value={store.password} onChange={actions.handleFormChange} />
@@ -153,7 +153,7 @@ const Register = () => {
                         </div>
                         <div className="card-footer border-top border-2 border-black d-flex justify-content-between">
                             <div className="ms-auto mx-3">
-                                <button type="submit" className="btn btn-outline-info ms-2">Register</button>
+                                <button type="submit" className="btn btn-outline-info ms-2">Sign Up</button>
                                 <button type="button" className="btn btn-outline-dark ms-2" onClick={cancelForm}>Cancel</button>
                             </div>
                         </div>

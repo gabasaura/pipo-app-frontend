@@ -3,6 +3,7 @@
 } */
 
 .comentario {
-    background-color: hwb(0 88% 10%);
-    border-radius: 10px;
-}
+    /*background-color: hwb(0 88% 10%);
+    border-radius: 10px;*/
+    padding: 0 10px;
+    }

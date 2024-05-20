@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import Footer from '../components/footer';
 
 const Faq = () => {
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <h2 className="text-center my-4">FAQ: PIPO APP</h2>
+        <div className="d-flex flex-column min-vh-100">
+            <div className="flex-column flex-grow-1 w-75 mx-auto py-5 align-items-center justify-content-center">
+                <h1 className="text-center mb-5">Because we do give faqs (￢‿￢ )	</h1>
                     <div className="accordion" id="faqAccordion">
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="heading1">
@@ -71,9 +71,10 @@ const Faq = () => {
                         {/* Add more accordion items for each FAQ question */}
                     </div>
                 </div>
+                <Footer />
             </div>
-        </div>
-    );
+        
+    )
 }
 
-export default Faq;
+export default Faq

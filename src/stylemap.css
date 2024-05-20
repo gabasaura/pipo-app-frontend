@@ -1,16 +1,38 @@
-body, * {
-    margin: 0;
-    padding: 0;
-  }
-  .leaflet-touch .leaflet-bar{
-    border:none;
-  }
-  .leaflet-touch .leaflet-bar a {
-    font-size: 20px;
-  }
-  .leaflet-popup-content-wrapper{
-    box-shadow: none;
-  }
-  .leaflet-popup-content-wrapper {
-    border-radius: 0;
-  }
+body,
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.leaflet-touch .leaflet-bar {
+  border: none;
+}
+
+.leaflet-touch .leaflet-bar a {
+  font-size: 20px;
+}
+
+.leaflet-popup-content-wrapper {
+  box-shadow: none;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0;
+}
+
+.leaflet-container a {
+  font-size: 13px;
+  color: #0dcaf0;
+}
+
+.leaflet-container a:hover {
+  color: #ffffff;
+  background-color:#0dcaf0 ;
+  
+}
+.leaflet-container a.leaflet-popup-close-button {
+  color: #333333;
+  font: 18px / 24px Tahoma, Verdana, sans-serif;
+    font-weight: 600;
+
+}
