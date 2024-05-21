@@ -4,6 +4,7 @@ import StarRating from '../components/Ranking';
 import MiniMap from '../components/MiniMap';
 import { Context } from '../store/AppContext';
 import { toast } from "react-toastify";
+import Footer from '../components/footer';
 
 const PipoForm = () => {
 
@@ -117,11 +118,11 @@ const PipoForm = () => {
 
 
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    
-                    <h3 className="text-center my-4">Add a New PIPO</h3>
+        
+        <div className="d-flex flex-column min-vh-100">
+            <div className="flex-column flex-grow-1 w-75 mx-auto py-5 align-items-center justify-content-center">
+                    <div>
+                    <h1 className="text-center my-4">Add a New Pipo</h1>
                     <form onSubmit={handleAddToilet}>
                         <div className="mb-3">
                             <label htmlFor="toiletName" className="form-label">Pipo Name:</label>
@@ -161,7 +162,7 @@ const PipoForm = () => {
                                 <input type="checkbox" className="form-check-input" id="hasBabyChanging" checked={babyChanger} onChange={(e) => setBabyChanger(e.target.checked)} />
                                 <label htmlFor="hasBabyChanging" className="form-check-label">Does It Have a Baby Changing?</label>
                             </div>
-                            <hr />
+                            <hr className="border-top border-dark border-1 opacity-100 pb-2" />
 
                         </div>
                         <button type="submit" className="btn btn-outline-info mb-3">Submit</button>
@@ -190,8 +191,9 @@ const PipoForm = () => {
                 </div>
                 <div className="col-md-8"><h3 className='mt-5 '>Thanks for cooperating with us! ＼( ⁀▽⁀ )／</h3></div>
             </div>
-
+            < Footer />
         </div>
+        
     );
 }
 
