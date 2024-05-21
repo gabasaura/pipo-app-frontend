@@ -179,7 +179,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const response = await fetch(`${url}/signup`, option)
 					const datos = await response.json()
-
+					const { cancelForm } = getActions()
 					if (datos.msg) {
 						console.log(datos)
 						if (datos.msg) toast.error(datos.msg)
@@ -194,9 +194,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 							current_user: user,
 							email: '',
 							password: '',
+							username: '',
 						});
 						sessionStorage.setItem('access_token', access_token);
 						sessionStorage.setItem('current_user', JSON.stringify(user));
+						cancelForm()
 					}
 
 				} catch (error) {
