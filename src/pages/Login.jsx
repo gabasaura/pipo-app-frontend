@@ -31,7 +31,7 @@ const Login = () => {
             <form onSubmit={handleLogin} className="flex-fill">
                 <div className="mt-5 card p-0 border border-2 border-black">
                     <div className="card-body">
-                        {store.error && <div className="alert alert-danger m-3" role="alert">{store.error}</div>}
+                        
                         <div className="row">
                             <div className="col-12 mb-3">
                                 <label htmlFor="email" className="form-label">Email</label>

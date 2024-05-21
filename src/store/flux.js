@@ -227,9 +227,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 
 						console.log('Password Reseted Successfully!');
+						toast.success(data.success)
 					} else {
 						console.error('Password Reset Failed:', data.error || 'Unknown error');
-						//  error message to the user
+						if (data.msg) toast.error(data.msg)
+						
 					}
 
 				} catch (error) {

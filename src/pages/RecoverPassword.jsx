@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import { Context } from '../store/AppContext';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/footer';
+import { toast } from "react-toastify";
 
 export const RecoverPassword = () => {
     const navigate = useNavigate()
@@ -35,9 +36,11 @@ export const RecoverPassword = () => {
                             () => {
                                 console.log('SUCCESS!')
                                 navigate("/resetpassword")
+                                toast.success("Magic code sent.")
                             },
                             (error) => {
                                 console.log('FAILED...', error.text)
+                                toast.error("Email is missing.")
                             }
                         )
                 }

@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { Context } from "../store/AppContext";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/footer";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
     const { store, actions } = useContext(Context);
@@ -29,6 +30,8 @@ const ResetPassword = () => {
         setEmail("")
         setCode("")
         setNewPassword("")
+        setConfirmNewPassword("")
+        
     };
 
     const handlePasswordChange = () => {
@@ -55,7 +58,7 @@ const ResetPassword = () => {
                     <form className="flex-fill" onSubmit={handleReset}>
                         <div className="mt-5 card border border-2 border-black">
                             <div className="card-body">
-                                {store.error && <div className="alert alert-danger m-3" role="alert">{store.error}</div>}
+                                
                                 <div className="row mx-2">
                                     <div className="col-12 mb-3">
                                         <label htmlFor="email" className="form-label">Email</label>
