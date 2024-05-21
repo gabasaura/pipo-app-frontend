@@ -53,14 +53,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (!username.trim()) {
 					setStore({ error: "Please enter a valid username." });
 					toast.error("Please enter a valid username.")
-					return true; 
+					return true;
 				}
 				if (!email.trim() || !getActions().isValidEmail(email)) {
 					setStore({ error: "Please enter a valid email address." });
 					toast.error("Please enter a valid email address.")
 					return true; // Form is invalid
 				}
-				
+
 				if (!password.trim() || password.length < 6) {
 					setStore({ error: "Password must be at least 6 characters." });
 					toast.error("Password must be at least 6 characters.")
@@ -249,7 +249,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					sessionStorage.removeItem('access_token')
 					sessionStorage.removeItem('current_user')
 					toast.success("Log out Successful")
-					
+
 				}
 			},
 			handleFormChange: (e) => {
@@ -359,9 +359,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			sendComment: (e, datos) => {
 				e.preventDefault();
-				
+
 				const { access_token } = getStore()
-				
+
 				const url = `http://127.0.0.1:5000/pipo/14/comment`;
 				const options = {
 					method: "POST",
@@ -377,8 +377,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(url, options)
 					.then(response => response.json())
 					.then(datos => {
-						
-						
+
+
 						console.log('Comentario Agregado', datos);
 						;
 					})
@@ -403,14 +403,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(url, options)
 					.then(response => response.json())
 					.then(datos => {
-						
-						
+
+
 						console.log('Comentario Agregado', datos);
 						;
 					})
 					.catch(error => console.error('Error al agregar comentario:', error));
 				getPipos()
-			}
+			},
+			cancelForm: () => {
+				console.log("cancelForm called"); // Debug message
+				console.log("setStore is:", setStore); // Check if setStore is defined and a function
+				if (typeof setStore === "function") {
+					setStore({
+						username: "",
+						email: "",
+						password: "",
+						repeatPassword: "",
+						name: "",
+						error: ""
+					});
+				} else {
+					console.error("setStore is not a function");
+				}
+			},
 		}
 	};
 };

@@ -154,7 +154,7 @@ const Register = () => {
                         <div className="card-footer border-top border-2 border-black d-flex justify-content-between">
                             <div className="ms-auto mx-3">
                                 <button type="submit" className="btn btn-outline-info ms-2">Sign Up</button>
-                                <button type="button" className="btn btn-outline-dark ms-2" onClick={cancelForm}>Cancel</button>
+                                <button type="button" className="btn btn-outline-dark ms-2" onClick={actions.cancelForm}>Cancel</button>
                             </div>
                         </div>
                     </div>
