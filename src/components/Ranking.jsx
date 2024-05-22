@@ -7,9 +7,9 @@ const StarRating = ({ rating, onChange }) => {
         let stars = [];
         for (let i = 1; i <= maxStars; i++) {
             if (i <= rating) {
-                stars.push(<FaStar key={i} />);
+                stars.push(<FaStar key={i} className="star-padding"/>);
             } else {
-                stars.push(<FaRegStar key={i} />);
+                stars.push(<FaRegStar key={i} className="star-padding"/>);
             }
         }
         return stars;

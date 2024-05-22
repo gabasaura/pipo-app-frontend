@@ -8,14 +8,21 @@
 
 body {
     height: 100vh !important;
-    
+
 
 }
+
+h6 {
+    font-size: .9rem;
+}
+
+
 
 .navbar {
     --bs-navbar-toggler-icon-bg: url(./assets/toggler-icon.svg);
 }
-.navbar-brand{
+
+.navbar-brand {
     margin-left: 0.6rem;
 
 }
@@ -34,12 +41,16 @@ body {
     font-weight: 600;
 }
 
+.p-top {
+    padding-top: .4em;
+}
+
 .offcanvas {
     --bs-offcanvas-width: auto;
 }
 
 .offcanvas-header .btn-close {
-    margin-left: 3em;
+    margin-left: 4em;
 }
 
 .btn-close {
@@ -58,4 +69,29 @@ input.form-control {
 .img-logo {
     width: 45px;
     height: 45px;
+}
+
+.star-padding {
+    margin: 0 2px;
+    /* Adjust the padding as needed */
+}
+
+.img-avatar {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+
+}
+
+.icono-pipocard {
+    width: 50px;
+    padding: 5px 10px;
+    font-size: 16px;
+    height: 50px;
+}
+
+@media (max-width: 991.98px) {
+    .w-75 {
+        width: 90% !important;
+    }
 }

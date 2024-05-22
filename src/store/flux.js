@@ -1,5 +1,7 @@
 import { toast } from "react-toastify";
 
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -47,12 +49,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 			validateForm: () => {
-				const { email, password, repeatPassword } = getStore();
+				const { username, email, password, repeatPassword } = getStore();
+				if (!username.trim()) {
+					setStore({ error: "Please enter a valid username." });
+					toast.error("Please enter a valid username.")
+					return true;
+				}
 				if (!email.trim() || !getActions().isValidEmail(email)) {
 					setStore({ error: "Please enter a valid email address." });
 					toast.error("Please enter a valid email address.")
 					return true; // Form is invalid
 				}
+
 				if (!password.trim() || password.length < 6) {
 					setStore({ error: "Password must be at least 6 characters." });
 					toast.error("Password must be at least 6 characters.")
@@ -150,7 +158,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						sessionStorage.setItem('access_token', access_token);
 						sessionStorage.setItem('current_user', JSON.stringify(user));
-						toast.success("Log in sucessfull")
+						toast.success("Log In Sucessful")
 					}
 
 				} catch (error) {
@@ -171,7 +179,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const response = await fetch(`${url}/signup`, option)
 					const datos = await response.json()
-
+					const { cancelForm } = getActions()
 					if (datos.msg) {
 						console.log(datos)
 						if (datos.msg) toast.error(datos.msg)
@@ -186,9 +194,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 							current_user: user,
 							email: '',
 							password: '',
+							username: '',
 						});
 						sessionStorage.setItem('access_token', access_token);
 						sessionStorage.setItem('current_user', JSON.stringify(user));
+						cancelForm()
 					}
 
 				} catch (error) {
@@ -218,14 +228,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 							password: '',
 						});
 
-						console.log('Password reset successfully!');
+						console.log('Password Reseted Successfully!');
+						toast.success(data.success)
 					} else {
-						console.error('Password reset failed:', data.error || 'Unknown error');
-						//  error message to the user
+						console.error('Password Reset Failed:', data.error || 'Unknown error');
+						if (data.msg) toast.error(data.msg)
+						
 					}
 
 				} catch (error) {
-					console.error('Password reset failed:', error.message);
+					console.error('Password Reset Failed:', error.message);
 					// Display error message to the user
 				}
 			},
@@ -241,6 +253,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					sessionStorage.removeItem('access_token')
 					sessionStorage.removeItem('current_user')
 					toast.success("Log out Successful")
+
 				}
 			},
 			handleFormChange: (e) => {
@@ -350,9 +363,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			sendComment: (e, datos) => {
 				e.preventDefault();
-				
+
 				const { access_token } = getStore()
-				
+
 				const url = `http://127.0.0.1:5000/pipo/14/comment`;
 				const options = {
 					method: "POST",
@@ -368,8 +381,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(url, options)
 					.then(response => response.json())
 					.then(datos => {
-						
-						
+
+
 						console.log('Comentario Agregado', datos);
 						;
 					})
@@ -394,14 +407,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(url, options)
 					.then(response => response.json())
 					.then(datos => {
-						
-						
-						console.log('Comentario Agregado', datos);
-						;
+
+
+						console.log('Rating Agregado', datos);
+						getPipos()
 					})
 					.catch(error => console.error('Error al agregar comentario:', error));
-				getPipos()
-			}
+				
+			},
+			cancelForm: () => {
+				console.log("cancelForm called"); // Debug message
+				console.log("setStore is:", setStore); // Check if setStore is defined and a function
+				if (typeof setStore === "function") {
+					setStore({
+						username: "",
+						email: "",
+						password: "",
+						repeatPassword: "",
+						name: "",
+						error: ""
+					});
+				} else {
+					console.error("setStore is not a function");
+				}
+			},
 		}
 	};
 };
