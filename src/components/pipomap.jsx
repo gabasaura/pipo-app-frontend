@@ -75,7 +75,7 @@ function PipoMap() {
 
 	useEffect(() => {
 		actions.getPipos();
-	}, []);
+	}, [store]);
 
 	return (
 		<MapContainer

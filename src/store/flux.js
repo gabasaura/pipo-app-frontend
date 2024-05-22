@@ -409,11 +409,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(datos => {
 
 
-						console.log('Comentario Agregado', datos);
-						;
+						console.log('Rating Agregado', datos);
+						getPipos()
 					})
 					.catch(error => console.error('Error al agregar comentario:', error));
-				getPipos()
+				
 			},
 			cancelForm: () => {
 				console.log("cancelForm called"); // Debug message
