@@ -1,3 +1,15 @@
-# React + Vite
+# Pipo App Frontend
 
-El link al repositorio del BACK END es el siguiente https://github.com/nguzm4n/pipo-app-backend.git
+#### A web app designed for users to find public restrooms near their location, comment, rate, and add. It's aimed at foreign users to facilitate their free exploration of the city. 
+
+## Technologies used in the Frontend are: 
+- React
+- JavaScript
+- HTML5
+- CSS3
+- Bootstrap
+- React-bootstrap
+- Leaflet (Map)
+
+## Back End
+The back end for this project can be found [here](https://github.com/nguzm4n/pipo-app-backend.git).
