@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
 		store: {
-			url: 'http://127.0.0.1:5000',
+			url: 'https://pipo-app-backend.onrender.com',
 			username: "",
 			email: '',
 			password: "",
@@ -34,7 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getPipos: async () => {
 				try {
-					const url = 'http://127.0.0.1:5000/pipos';
+					const url = 'https://pipo-app-backend.onrender.com/pipos';
 					const options = {
 						method: "GET",
 						headers: { 'Content-Type': 'application/json' }
@@ -90,7 +90,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// Form submit logic here
 					console.log("Form submitted successfully!");
 
-					const url = 'http://127.0.0.1:5000/login';
+					const url = 'https://pipo-app-backend.onrender.com/login';
 					const options = {
 						method: "POST",
 						headers: {
@@ -264,7 +264,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			activatePipo: (pipoId) => {
 				const { access_token } = getStore()
-				const url = `http://127.0.0.1:5000/pipos/${pipoId}/active`
+				const url = `https://pipo-app-backend.onrender.com/pipos/${pipoId}/active`
 				const options = {
 					method: 'GET',
 					headers: {
@@ -292,7 +292,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deletePipo: (pipoId) => {
 				const { access_token } = getStore()
-				const url = `http://127.0.0.1:5000/pipos/${pipoId}/delete`
+				const url = `https://pipo-app-backend.onrender.com/pipos/${pipoId}/delete`
 				const options = {
 					method: 'DELETE',
 					headers: {
@@ -366,7 +366,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				const { access_token } = getStore()
 
-				const url = `http://127.0.0.1:5000/pipo/14/comment`;
+				const url = `https://pipo-app-backend.onrender.com/pipo/14/comment`;
 				const options = {
 					method: "POST",
 					headers: {
@@ -392,7 +392,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			sendRating: (rating, id) => {
 				const { access_token } = getStore()
 				const { getPipos } = getActions()
-				const url = `http://127.0.0.1:5000/pipo/${id}/rate`;
+				const url = `https://pipo-app-backend.onrender.com/pipo/${id}/rate`;
 				const options = {
 					method: "POST",
 					headers: {
