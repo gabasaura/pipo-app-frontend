@@ -31,7 +31,7 @@ const PipoForm = () => {
     const handleAddToilet = (event) => {
         event.preventDefault();
         const { access_token } = store
-        const url = 'http://127.0.0.1:5000/pipos';
+        const url = 'https://pipo-app-backend.onrender.com/pipos';
         console.log({
             pipo_name: toiletName,
             address: toiletAddress,

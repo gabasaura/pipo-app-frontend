@@ -37,7 +37,7 @@ const Register = () => {
         if (!validateForm()) {
             console.log("Form submitted successfully!");
 
-            const url = 'http://127.0.0.1:5000/signup';
+            const url = 'https://pipo-app-backend.onrender.com/signup';
             const options = {
                 method: "POST",
                 headers: {

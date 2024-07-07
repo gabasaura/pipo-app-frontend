@@ -28,7 +28,7 @@ const UserProfile = () => {
     const sendPassword = (event) => {
         ;
         const { access_token } = store
-        const url = 'http://127.0.0.1:5000/changepassword';
+        const url = 'https://pipo-app-backend.onrender.com/changepassword';
         const options = {
             method: "POST",
             headers: {
