@@ -13,5 +13,11 @@
 ## Back End
 The back end for this project can be found [here](https://github.com/nguzm4n/pipo-app-backend.git).
 
-## Deploy project
-[✨ HERE](https://pipo-app-frontend.onrender.com/)
+## Deploy test project:
+[✨ PIPO PLAYGROUND UNDER CONSTRUCTION](https://pipo-app-frontend.onrender.com/)
+
+#### You can enter as an admin user, so that you can register new pipo and add.
+```
+email: emailAdmin@website.com
+password: 1234567
+```
