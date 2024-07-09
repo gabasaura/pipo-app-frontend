@@ -45,7 +45,7 @@ function PipoMap() {
 		e.preventDefault();
 		{
 			const { access_token } = store
-			const url = `http://127.0.0.1:5000/pipo/${id}/comment`;
+			const url = `https://pipo-app-backend.onrender.com/pipo/${id}/comment`;
 			const options = {
 				method: "POST",
 				headers: {
