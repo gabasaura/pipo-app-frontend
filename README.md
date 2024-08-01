@@ -18,6 +18,6 @@ The back end for this project can be found [here](https://github.com/nguzm4n/pip
 
 #### You can enter as an admin user, so that you can register new pipo and add.
 ```
-email: emailAdmin@website.com
+email: admin@pipo.com
 password: 1234567
 ```
