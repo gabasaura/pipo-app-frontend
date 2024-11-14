@@ -1,0 +1,17 @@
+// _objects.scss
+@use 'utils';
+
+.dropdown-divider {
+  border-top: 1px solid utils.$pi_primary;
+  margin: 0;
+}
+.dropdown-menu {
+  --bs-dropdown-border-color: none;
+  --bs-dropdown-padding-y: 0;
+}
+
+.dropdown-item {
+  &:hover {
+    background-color: utils.$pi-secondary;
+  }
+}

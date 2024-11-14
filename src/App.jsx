@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/NavBar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Faq from "./pages/Faq";
@@ -14,7 +13,8 @@ import injectContext from "./store/AppContext";
 import { RecoverPassword } from "./pages/RecoverPassword";
 import ResetPassword from "./pages/resetpassword";
 import { ToastContainer } from "react-toastify";
-import PipoNavbar from "./components/NavBar";
+import PipoNavbar from "./components/PipoNavbar";
+import Sidebar from "./components/Sidebar";
 
 
 
@@ -23,6 +23,7 @@ const App = () => {
     return (
             <BrowserRouter>
                 <PipoNavbar />
+                <Sidebar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />

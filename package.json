@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.7",
+    "@mui/material": "^6.1.6",
     "bootstrap": "^5.3.3",
     "leaflet": "^1.9.4",
     "leaflet-routing-machine": "^3.2.12",
@@ -20,7 +24,8 @@
     "react-icons": "^5.2.1",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.23.0",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "sass": "^1.80.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

@@ -1,0 +1,12 @@
+/* App.module.scss */
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .mainContent {
+    display: flex;
+    flex-grow: 1;
+  }
+  

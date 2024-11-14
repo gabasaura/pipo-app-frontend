@@ -1,0 +1,32 @@
+/* Sidebar.module.scss */
+.sidebar {
+  height: calc(100vh - 76px);
+
+  &.collapsed {
+    width: 50px;
+  }
+
+  &.expanded {
+    width: 150px;
+  }
+  span {
+    padding-left: .5em;
+  }
+  svg {
+    vertical-align: sub;
+  }
+}
+
+.toggleButton {
+  width: 100%;
+
+}
+
+.drop {
+  transform: translate3d(0px, -56px, 0px) !important;
+}
+
+.link {
+  text-align: left;
+  padding-left: 14px;
+}

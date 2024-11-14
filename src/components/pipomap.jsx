@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import LocationMarker from './locationmarker';
@@ -66,7 +66,7 @@ function PipoMap() {
 				})
 				.catch(error => console.error('Error al Comentar:', error));
 
-			;
+
 		}
 		actions.getPipos()
 		setUserComment("")
@@ -82,7 +82,14 @@ function PipoMap() {
 			center={[-33.4713463, -70.8633804]}
 			zoom={11}
 			scrollWheelZoom={true}
-			style={{ height: "100vh", width: "100%" }}
+			style={{
+				height: "100vh",
+				width: "100vw",
+				position: "absolute",
+				top: "0",
+				left: "0",
+				zIndex: "-1",
+			}}
 		>
 			<TileLayer
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -144,24 +151,24 @@ function PipoMap() {
 
 									<h5>Community Reviews</h5>
 									<table className="table table-bordered border-infos">
-									<tbody>
-									{pipo.comments.map(comentario =>
-										
-										<Comments
-											key={comentario.id}
-											id={comentario.id}
-											username={comentario.user}
-											date={comentario.date}
-											comment={comentario.comments}
-											rating={pipo.ratings.find(rating => rating.user_id == comentario.user_id)}
+										<tbody>
+											{pipo.comments.map(comentario =>
 
-										/>
-								
-									)}
-									</tbody>
+												<Comments
+													key={comentario.id}
+													id={comentario.id}
+													username={comentario.user}
+													date={comentario.date}
+													comment={comentario.comments}
+													rating={pipo.ratings.find(rating => rating.user_id == comentario.user_id)}
+
+												/>
+
+											)}
+										</tbody>
 									</table>
 
-									
+
 
 
 								</div>

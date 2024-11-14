@@ -1,0 +1,10 @@
+// _mixins.scss
+@mixin custom-border(
+    $border-width: 3px, 
+    $border-style: solid, 
+    $border-color: $pi-secondary, 
+    $border-radius: none
+) {
+    border: #{$border-width} #{$border-style} #{$border-color}; // Define el borde
+    border-radius: $border-radius; // Define el radio del borde
+}

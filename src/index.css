@@ -8,15 +8,14 @@
 
 body {
     height: 100vh !important;
-
-
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 h6 {
     font-size: .9rem;
 }
-
-
 
 .navbar {
     --bs-navbar-toggler-icon-bg: url(./assets/toggler-icon.svg);
@@ -24,7 +23,6 @@ h6 {
 
 .navbar-brand {
     margin-left: 0.6rem;
-
 }
 
 .navbar-toggler {
@@ -80,7 +78,6 @@ input.form-control {
     width: 220px;
     height: 220px;
     margin: 0 auto;
-
 }
 
 .icono-pipocard {
