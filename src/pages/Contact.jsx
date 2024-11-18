@@ -94,7 +94,7 @@ const Contact = () => {
     }
 
     return (
-        <div className="d-flex flex-column min-vh-100">
+        <div className="d-flex flex-column min-vh-100 page-container">
             <div className="flex-column flex-grow-1 w-75 mx-auto py-5 align-items-center justify-content-center">
                 <h1 className="mb-3 text-center">We'd Love to Hear From You!</h1>
                 <form ref={form} className="flex-fill" onSubmit={handleFormSubmit}>

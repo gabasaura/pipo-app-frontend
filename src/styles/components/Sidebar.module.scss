@@ -1,6 +1,6 @@
 /* Sidebar.module.scss */
 .sidebar {
-  height: calc(100vh - 76px);
+  height: calc(100% - 76px);
 
   &.collapsed {
     width: 50px;

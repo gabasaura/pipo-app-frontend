@@ -16,6 +16,13 @@ body {
 h6 {
     font-size: .9rem;
 }
+.page-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
 
 .navbar {
     --bs-navbar-toggler-icon-bg: url(./assets/toggler-icon.svg);
